@@ -122,7 +122,7 @@ const featured = [
 
 export function ServicesGrid() {
   return (
-    <section className="bg-deep/40 py-24">
+    <section className="bg-secondary/50 py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="What We Do"
@@ -175,7 +175,7 @@ export function AutomationShowcase() {
           copy="Placeholder metrics: automation typically reclaims hours of manual work each week and compounds revenue by keeping every channel in sync."
           center
         />
-        <div className="luxe-card mt-14 overflow-x-auto p-6 sm:p-10">
+        <div className="mt-14 overflow-x-auto rounded-lg border border-gold-soft bg-[oklch(0.213_0.038_268)] p-6 sm:p-10">
           <svg viewBox="0 0 780 240" className="mx-auto h-auto w-full min-w-[680px]" role="img" aria-label="Diagram showing leads, content, ads and analytics connected by an AI automation core">
             <defs>
               <linearGradient id="goldLine" x1="0" x2="1">
@@ -274,7 +274,7 @@ export function Testimonials() {
   const item = testimonials[i] ?? testimonials[0]!;
 
   return (
-    <section className="bg-deep/40 py-24">
+    <section className="bg-secondary/50 py-24">
       <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
         <Quote className="mx-auto h-10 w-10 text-gold" aria-hidden />
         <blockquote className="mt-8 font-display text-2xl leading-snug uppercase sm:text-3xl">
