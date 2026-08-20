@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import logo from "@/assets/jointheirs-logo.png.asset.json";
@@ -8,6 +8,16 @@ import { navLinks, services } from "@/lib/site";
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  // At the top of the homepage the navbar floats over the dark cinematic hero,
+  // so links stay silver-white in both themes for contrast.
+  const overHero = pathname === "/" && !scrolled;
+  const linkTone = overHero
+    ? "text-[oklch(0.968_0.005_247)] hover:text-[oklch(0.75_0.13_88)]"
+    : "text-foreground/80 hover:text-gold";
+  const ghostTone = overHero
+    ? "border-[oklch(0.75_0.13_88_/_55%)] text-[oklch(0.968_0.005_247)] hover:border-[oklch(0.75_0.13_88)] hover:text-[oklch(0.75_0.13_88)]"
+    : "border-gold-soft text-foreground hover:border-gold hover:text-gold";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -53,7 +63,7 @@ export function Navbar() {
                 to={link.to}
                 activeOptions={{ exact: link.to === "/" }}
                 activeProps={{ className: "text-gold" }}
-                className="font-display text-[13px] tracking-[0.18em] uppercase text-foreground/80 transition-colors hover:text-gold"
+                className={`font-display text-[13px] tracking-[0.18em] uppercase transition-colors ${linkTone}`}
               >
                 {link.label}
               </Link>
@@ -71,7 +81,7 @@ export function Navbar() {
           </Link>
           <Link
             to="/book"
-            className="hidden rounded-full border border-gold-soft px-5 py-2.5 font-display text-[12px] tracking-[0.16em] uppercase text-foreground transition-colors duration-300 hover:border-gold hover:text-gold xl:inline-flex"
+            className={`hidden rounded-full border px-5 py-2.5 font-display text-[12px] tracking-[0.16em] uppercase transition-colors duration-300 xl:inline-flex ${ghostTone}`}
           >
             Book a Strategy Session
           </Link>
@@ -80,7 +90,7 @@ export function Navbar() {
             onClick={() => setOpen(true)}
             aria-label="Open menu"
             aria-expanded={open}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold-soft text-foreground xl:hidden"
+            className={`inline-flex h-10 w-10 items-center justify-center rounded-full border xl:hidden ${ghostTone}`}
           >
             <Menu className="h-5 w-5" />
           </button>
