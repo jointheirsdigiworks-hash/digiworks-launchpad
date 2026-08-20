@@ -7,9 +7,8 @@ const description =
   "Tell us about your project in four quick steps and receive a tailored quote from our Lagos-based digital growth team.";
 
 export const Route = createFileRoute("/quote")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    service: typeof search["service"] === "string" ? search["service"].slice(0, 160) : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { service?: string } =>
+    typeof search["service"] === "string" ? { service: search["service"].slice(0, 160) } : {},
   head: () => ({
     meta: [
       { title },
