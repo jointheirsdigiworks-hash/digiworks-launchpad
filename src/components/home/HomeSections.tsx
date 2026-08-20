@@ -271,7 +271,7 @@ const testimonials = [
 
 export function Testimonials() {
   const [i, setI] = useState(0);
-  const item = testimonials[i];
+  const item = testimonials[i] ?? testimonials[0]!;
 
   return (
     <section className="bg-deep/40 py-24">

@@ -93,7 +93,7 @@ export function HeroFlipCards() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onTouchStart={(e) => {
-        touchStart.current = e.touches[0].clientX;
+        touchStart.current = e.touches[0]?.clientX ?? null;
         setPaused(true);
       }}
       onTouchEnd={(e) => {
@@ -101,7 +101,7 @@ export function HeroFlipCards() {
         touchStart.current = null;
         setPaused(false);
         if (start === null) return;
-        const delta = e.changedTouches[0].clientX - start;
+        const delta = (e.changedTouches[0]?.clientX ?? start) - start;
         if (Math.abs(delta) > 48) (delta < 0 ? next : prev)();
       }}
     >

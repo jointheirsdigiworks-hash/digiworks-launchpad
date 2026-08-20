@@ -6,9 +6,9 @@ export function PageShell({
   intro,
   children,
 }: {
-  eyebrow?: string;
+  eyebrow?: string | undefined;
   title: string;
-  intro?: string;
+  intro?: string | undefined;
   children?: ReactNode;
 }) {
   return (
