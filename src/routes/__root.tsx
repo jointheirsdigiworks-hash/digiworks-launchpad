@@ -153,6 +153,7 @@ function RootComponent() {
         <Outlet />
         <Footer />
         <FloatingButtons />
+        <Toaster position="bottom-center" />
       </ThemeProvider>
     </QueryClientProvider>
   );
