@@ -91,3 +91,58 @@ export const getRobotsContent = createServerFn({ method: "GET" }).handler(async 
   const value = (data?.value ?? {}) as { content?: string };
   return { content: value.content ?? "User-agent: *\nAllow: /\nDisallow: /admin\n" };
 });
+
+export const listServices = createServerFn({ method: "GET" }).handler(async () => {
+  const { publicDb } = await import("./public-db.server");
+  const { data } = await publicDb()
+    .from("services")
+    .select("slug, name, short_description, category, hero_image_url, hero_image_alt")
+    .eq("active", true)
+    .order("sort_order");
+  return { services: data ?? [] };
+});
+
+export const listCaseStudies = createServerFn({ method: "GET" }).handler(async () => {
+  const { publicDb } = await import("./public-db.server");
+  const { data } = await publicDb()
+    .from("case_studies")
+    .select("slug, title, client_name, industry, category, cover_image_url, cover_image_alt, result_summary")
+    .eq("published", true)
+    .order("sort_order");
+  return { studies: data ?? [] };
+});
+
+export const listPosts = createServerFn({ method: "GET" }).handler(async () => {
+  const { publicDb } = await import("./public-db.server");
+  const { data } = await publicDb()
+    .from("blog_posts")
+    .select(
+      "slug, title, excerpt, category, author, cover_image_url, cover_image_alt, published_at, reading_minutes, featured, video_url, video_kind, video_poster_url, video_is_featured",
+    )
+    .eq("published", true)
+    .order("published_at", { ascending: false });
+  return { posts: data ?? [] };
+});
+
+export const getFounderPage = createServerFn({ method: "GET" }).handler(async () => {
+  const { publicDb } = await import("./public-db.server");
+  const db = publicDb();
+  const [settings, team] = await Promise.all([
+    db.from("site_settings").select("value").eq("key", "founder").maybeSingle(),
+    db
+      .from("team_members")
+      .select("id, name, designation, bio, photo_url, photo_alt, social_url")
+      .eq("active", true)
+      .order("sort_order"),
+  ]);
+  return {
+    founder: (settings.data?.value ?? {}) as {
+      title?: string;
+      name?: string;
+      role?: string;
+      story?: string[];
+      quote?: string;
+    },
+    team: team.data ?? [],
+  };
+});
