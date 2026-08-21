@@ -17,6 +17,9 @@ const TABLES = [
 
 type AdminTable = (typeof TABLES)[number];
 
+type Json = string | number | boolean | null | Json[] | { [key: string]: Json };
+type Row = Record<string, Json>;
+
 const ORDER: Record<AdminTable, { column: string; ascending: boolean }> = {
   services: { column: "sort_order", ascending: true },
   case_studies: { column: "sort_order", ascending: true },
@@ -51,7 +54,7 @@ export const adminList = createServerFn({ method: "POST" })
       .order(order.column, { ascending: order.ascending })
       .limit(500);
     if (error) throw new Error(error.message);
-    return { rows: (rows ?? []) as Record<string, unknown>[] };
+    return { rows: (rows ?? []) as unknown as Row[] };
   });
 
 export const adminSave = createServerFn({ method: "POST" })
@@ -74,7 +77,7 @@ export const adminSave = createServerFn({ method: "POST" })
         .select("*")
         .maybeSingle();
       if (error) throw new Error(error.message);
-      return { row: row as Record<string, unknown> | null };
+      return { row: (row ?? null) as unknown as Row | null };
     }
 
     delete payload["id"];
@@ -84,7 +87,7 @@ export const adminSave = createServerFn({ method: "POST" })
       .select("*")
       .maybeSingle();
     if (error) throw new Error(error.message);
-    return { row: row as Record<string, unknown> | null };
+    return { row: (row ?? null) as unknown as Row | null };
   });
 
 export const adminDelete = createServerFn({ method: "POST" })
