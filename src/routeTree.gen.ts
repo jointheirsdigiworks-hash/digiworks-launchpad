@@ -20,6 +20,12 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as QuoteRouteImport } from './routes/quote'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminBlogRouteImport } from './routes/admin.blog'
+import { Route as AdminMediaRouteImport } from './routes/admin.media'
+import { Route as AdminPortfolioRouteImport } from './routes/admin.portfolio'
+import { Route as AdminSeoRouteImport } from './routes/admin.seo'
+import { Route as AdminServicesRouteImport } from './routes/admin.services'
+import { Route as AdminTeamRouteImport } from './routes/admin.team'
 import { Route as InsightsIndexRouteImport } from './routes/insights.index'
 import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
 import { Route as PortfolioIndexRouteImport } from './routes/portfolio.index'
@@ -84,6 +90,36 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/admin/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminBlogRoute = AdminBlogRouteImport.update({
+  id: '/admin/blog',
+  path: '/admin/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminMediaRoute = AdminMediaRouteImport.update({
+  id: '/admin/media',
+  path: '/admin/media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminPortfolioRoute = AdminPortfolioRouteImport.update({
+  id: '/admin/portfolio',
+  path: '/admin/portfolio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSeoRoute = AdminSeoRouteImport.update({
+  id: '/admin/seo',
+  path: '/admin/seo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminServicesRoute = AdminServicesRouteImport.update({
+  id: '/admin/services',
+  path: '/admin/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminTeamRoute = AdminTeamRouteImport.update({
+  id: '/admin/team',
+  path: '/admin/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InsightsIndexRoute = InsightsIndexRouteImport.update({
   id: '/insights/',
   path: '/insights/',
@@ -136,6 +172,12 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/quote': typeof QuoteRoute
   '/terms': typeof TermsRoute
+  '/admin/blog': typeof AdminBlogRoute
+  '/admin/media': typeof AdminMediaRoute
+  '/admin/portfolio': typeof AdminPortfolioRoute
+  '/admin/seo': typeof AdminSeoRoute
+  '/admin/services': typeof AdminServicesRoute
+  '/admin/team': typeof AdminTeamRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/portfolio/$slug': typeof PortfolioSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
@@ -157,6 +199,12 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/quote': typeof QuoteRoute
   '/terms': typeof TermsRoute
+  '/admin/blog': typeof AdminBlogRoute
+  '/admin/media': typeof AdminMediaRoute
+  '/admin/portfolio': typeof AdminPortfolioRoute
+  '/admin/seo': typeof AdminSeoRoute
+  '/admin/services': typeof AdminServicesRoute
+  '/admin/team': typeof AdminTeamRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/portfolio/$slug': typeof PortfolioSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
@@ -179,6 +227,12 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/quote': typeof QuoteRoute
   '/terms': typeof TermsRoute
+  '/admin/blog': typeof AdminBlogRoute
+  '/admin/media': typeof AdminMediaRoute
+  '/admin/portfolio': typeof AdminPortfolioRoute
+  '/admin/seo': typeof AdminSeoRoute
+  '/admin/services': typeof AdminServicesRoute
+  '/admin/team': typeof AdminTeamRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/portfolio/$slug': typeof PortfolioSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
@@ -202,6 +256,12 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/quote'
     | '/terms'
+    | '/admin/blog'
+    | '/admin/media'
+    | '/admin/portfolio'
+    | '/admin/seo'
+    | '/admin/services'
+    | '/admin/team'
     | '/insights/$slug'
     | '/portfolio/$slug'
     | '/services/$slug'
@@ -223,6 +283,12 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/quote'
     | '/terms'
+    | '/admin/blog'
+    | '/admin/media'
+    | '/admin/portfolio'
+    | '/admin/seo'
+    | '/admin/services'
+    | '/admin/team'
     | '/insights/$slug'
     | '/portfolio/$slug'
     | '/services/$slug'
@@ -244,6 +310,12 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/quote'
     | '/terms'
+    | '/admin/blog'
+    | '/admin/media'
+    | '/admin/portfolio'
+    | '/admin/seo'
+    | '/admin/services'
+    | '/admin/team'
     | '/insights/$slug'
     | '/portfolio/$slug'
     | '/services/$slug'
@@ -266,6 +338,12 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   QuoteRoute: typeof QuoteRoute
   TermsRoute: typeof TermsRoute
+  AdminBlogRoute: typeof AdminBlogRoute
+  AdminMediaRoute: typeof AdminMediaRoute
+  AdminPortfolioRoute: typeof AdminPortfolioRoute
+  AdminSeoRoute: typeof AdminSeoRoute
+  AdminServicesRoute: typeof AdminServicesRoute
+  AdminTeamRoute: typeof AdminTeamRoute
   InsightsSlugRoute: typeof InsightsSlugRoute
   PortfolioSlugRoute: typeof PortfolioSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
@@ -356,6 +434,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/blog': {
+      id: '/admin/blog'
+      path: '/admin/blog'
+      fullPath: '/admin/blog'
+      preLoaderRoute: typeof AdminBlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/media': {
+      id: '/admin/media'
+      path: '/admin/media'
+      fullPath: '/admin/media'
+      preLoaderRoute: typeof AdminMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/portfolio': {
+      id: '/admin/portfolio'
+      path: '/admin/portfolio'
+      fullPath: '/admin/portfolio'
+      preLoaderRoute: typeof AdminPortfolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/seo': {
+      id: '/admin/seo'
+      path: '/admin/seo'
+      fullPath: '/admin/seo'
+      preLoaderRoute: typeof AdminSeoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/services': {
+      id: '/admin/services'
+      path: '/admin/services'
+      fullPath: '/admin/services'
+      preLoaderRoute: typeof AdminServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/team': {
+      id: '/admin/team'
+      path: '/admin/team'
+      fullPath: '/admin/team'
+      preLoaderRoute: typeof AdminTeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/insights/': {
       id: '/insights/'
       path: '/insights'
@@ -426,6 +546,12 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   QuoteRoute: QuoteRoute,
   TermsRoute: TermsRoute,
+  AdminBlogRoute: AdminBlogRoute,
+  AdminMediaRoute: AdminMediaRoute,
+  AdminPortfolioRoute: AdminPortfolioRoute,
+  AdminSeoRoute: AdminSeoRoute,
+  AdminServicesRoute: AdminServicesRoute,
+  AdminTeamRoute: AdminTeamRoute,
   InsightsSlugRoute: InsightsSlugRoute,
   PortfolioSlugRoute: PortfolioSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
