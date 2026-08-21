@@ -21,6 +21,7 @@ import { Route as QuoteRouteImport } from './routes/quote'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
+import { Route as AdminMediaRouteImport } from './routes/admin.media'
 import { Route as AdminPortfolioRouteImport } from './routes/admin.portfolio'
 import { Route as AdminSeoRouteImport } from './routes/admin.seo'
 import { Route as AdminServicesRouteImport } from './routes/admin.services'
@@ -92,6 +93,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
 const AdminBlogRoute = AdminBlogRouteImport.update({
   id: '/admin/blog',
   path: '/admin/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminMediaRoute = AdminMediaRouteImport.update({
+  id: '/admin/media',
+  path: '/admin/media',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminPortfolioRoute = AdminPortfolioRouteImport.update({
@@ -167,6 +173,7 @@ export interface FileRoutesByFullPath {
   '/quote': typeof QuoteRoute
   '/terms': typeof TermsRoute
   '/admin/blog': typeof AdminBlogRoute
+  '/admin/media': typeof AdminMediaRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
   '/admin/seo': typeof AdminSeoRoute
   '/admin/services': typeof AdminServicesRoute
@@ -193,6 +200,7 @@ export interface FileRoutesByTo {
   '/quote': typeof QuoteRoute
   '/terms': typeof TermsRoute
   '/admin/blog': typeof AdminBlogRoute
+  '/admin/media': typeof AdminMediaRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
   '/admin/seo': typeof AdminSeoRoute
   '/admin/services': typeof AdminServicesRoute
@@ -220,6 +228,7 @@ export interface FileRoutesById {
   '/quote': typeof QuoteRoute
   '/terms': typeof TermsRoute
   '/admin/blog': typeof AdminBlogRoute
+  '/admin/media': typeof AdminMediaRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
   '/admin/seo': typeof AdminSeoRoute
   '/admin/services': typeof AdminServicesRoute
@@ -248,6 +257,7 @@ export interface FileRouteTypes {
     | '/quote'
     | '/terms'
     | '/admin/blog'
+    | '/admin/media'
     | '/admin/portfolio'
     | '/admin/seo'
     | '/admin/services'
@@ -274,6 +284,7 @@ export interface FileRouteTypes {
     | '/quote'
     | '/terms'
     | '/admin/blog'
+    | '/admin/media'
     | '/admin/portfolio'
     | '/admin/seo'
     | '/admin/services'
@@ -300,6 +311,7 @@ export interface FileRouteTypes {
     | '/quote'
     | '/terms'
     | '/admin/blog'
+    | '/admin/media'
     | '/admin/portfolio'
     | '/admin/seo'
     | '/admin/services'
@@ -327,6 +339,7 @@ export interface RootRouteChildren {
   QuoteRoute: typeof QuoteRoute
   TermsRoute: typeof TermsRoute
   AdminBlogRoute: typeof AdminBlogRoute
+  AdminMediaRoute: typeof AdminMediaRoute
   AdminPortfolioRoute: typeof AdminPortfolioRoute
   AdminSeoRoute: typeof AdminSeoRoute
   AdminServicesRoute: typeof AdminServicesRoute
@@ -428,6 +441,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminBlogRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/media': {
+      id: '/admin/media'
+      path: '/admin/media'
+      fullPath: '/admin/media'
+      preLoaderRoute: typeof AdminMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/portfolio': {
       id: '/admin/portfolio'
       path: '/admin/portfolio'
@@ -527,6 +547,7 @@ const rootRouteChildren: RootRouteChildren = {
   QuoteRoute: QuoteRoute,
   TermsRoute: TermsRoute,
   AdminBlogRoute: AdminBlogRoute,
+  AdminMediaRoute: AdminMediaRoute,
   AdminPortfolioRoute: AdminPortfolioRoute,
   AdminSeoRoute: AdminSeoRoute,
   AdminServicesRoute: AdminServicesRoute,
