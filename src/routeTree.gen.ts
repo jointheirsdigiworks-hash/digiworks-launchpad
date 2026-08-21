@@ -22,6 +22,7 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
 import { Route as AdminPortfolioRouteImport } from './routes/admin.portfolio'
+import { Route as AdminSeoRouteImport } from './routes/admin.seo'
 import { Route as AdminServicesRouteImport } from './routes/admin.services'
 import { Route as AdminTeamRouteImport } from './routes/admin.team'
 import { Route as InsightsIndexRouteImport } from './routes/insights.index'
@@ -98,6 +99,11 @@ const AdminPortfolioRoute = AdminPortfolioRouteImport.update({
   path: '/admin/portfolio',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminSeoRoute = AdminSeoRouteImport.update({
+  id: '/admin/seo',
+  path: '/admin/seo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminServicesRoute = AdminServicesRouteImport.update({
   id: '/admin/services',
   path: '/admin/services',
@@ -162,6 +168,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
+  '/admin/seo': typeof AdminSeoRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/team': typeof AdminTeamRoute
   '/insights/$slug': typeof InsightsSlugRoute
@@ -187,6 +194,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
+  '/admin/seo': typeof AdminSeoRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/team': typeof AdminTeamRoute
   '/insights/$slug': typeof InsightsSlugRoute
@@ -213,6 +221,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
+  '/admin/seo': typeof AdminSeoRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/team': typeof AdminTeamRoute
   '/insights/$slug': typeof InsightsSlugRoute
@@ -240,6 +249,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin/blog'
     | '/admin/portfolio'
+    | '/admin/seo'
     | '/admin/services'
     | '/admin/team'
     | '/insights/$slug'
@@ -265,6 +275,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin/blog'
     | '/admin/portfolio'
+    | '/admin/seo'
     | '/admin/services'
     | '/admin/team'
     | '/insights/$slug'
@@ -290,6 +301,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin/blog'
     | '/admin/portfolio'
+    | '/admin/seo'
     | '/admin/services'
     | '/admin/team'
     | '/insights/$slug'
@@ -316,6 +328,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   AdminBlogRoute: typeof AdminBlogRoute
   AdminPortfolioRoute: typeof AdminPortfolioRoute
+  AdminSeoRoute: typeof AdminSeoRoute
   AdminServicesRoute: typeof AdminServicesRoute
   AdminTeamRoute: typeof AdminTeamRoute
   InsightsSlugRoute: typeof InsightsSlugRoute
@@ -422,6 +435,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminPortfolioRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/seo': {
+      id: '/admin/seo'
+      path: '/admin/seo'
+      fullPath: '/admin/seo'
+      preLoaderRoute: typeof AdminSeoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/services': {
       id: '/admin/services'
       path: '/admin/services'
@@ -508,6 +528,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   AdminBlogRoute: AdminBlogRoute,
   AdminPortfolioRoute: AdminPortfolioRoute,
+  AdminSeoRoute: AdminSeoRoute,
   AdminServicesRoute: AdminServicesRoute,
   AdminTeamRoute: AdminTeamRoute,
   InsightsSlugRoute: InsightsSlugRoute,
