@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Lock } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -9,6 +9,17 @@ const credentials = z.object({
   email: z.string().trim().email("Enter a valid email address").max(255),
   password: z.string().min(8, "Password must be at least 8 characters").max(128),
 });
+
+const sections = [
+  { to: "/admin/services", label: "Services", description: "All 13 service pages: copy, imagery, features, process and FAQs." },
+  { to: "/admin/portfolio", label: "Portfolio", description: "Add, edit and remove case studies and their results." },
+  { to: "/admin/blog", label: "Blog & Insights", description: "Write articles and attach featured or inline video." },
+  { to: "/admin/team", label: "Leadership Team", description: "Manage management team cards and photos." },
+  { to: "/admin/submissions", label: "Submissions", description: "Enquiries, quote requests and strategy session bookings." },
+  { to: "/admin/media", label: "Media Library", description: "Upload imagery and video with alt text." },
+  { to: "/admin/seo", label: "SEO", description: "Per-page meta titles, descriptions and share images." },
+  { to: "/admin/settings", label: "Site Settings", description: "Founder story, contact details and booking availability." },
+] as const;
 
 export const Route = createFileRoute("/admin/")({
   head: () => ({
@@ -93,12 +104,13 @@ function AdminLogin() {
           </p>
         )}
         {isAdmin && (
-          <div className="luxe-card mt-8 border-dashed p-8">
-            <p className="font-display text-sm tracking-[0.2em] text-gold uppercase">Phase 2</p>
-            <p className="mt-3 text-sm text-muted-foreground">
-              Content management for hero cards, services, portfolio, blog posts, products, testimonials,
-              enquiries and default theme lands in the next phase.
-            </p>
+          <div className="mt-9 grid gap-4 sm:grid-cols-2">
+            {sections.map((section) => (
+              <Link key={section.to} to={section.to} className="luxe-card p-7">
+                <p className="font-display text-[12px] tracking-[0.2em] text-gold uppercase">{section.label}</p>
+                <p className="mt-3 text-sm text-muted-foreground">{section.description}</p>
+              </Link>
+            ))}
           </div>
         )}
         <button
