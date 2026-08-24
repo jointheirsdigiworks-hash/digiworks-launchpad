@@ -93,12 +93,13 @@ function AdminLogin() {
           </p>
         )}
         {isAdmin && (
-          <div className="luxe-card mt-8 border-dashed p-8">
-            <p className="font-display text-sm tracking-[0.2em] text-gold uppercase">Phase 2</p>
-            <p className="mt-3 text-sm text-muted-foreground">
-              Content management for hero cards, services, portfolio, blog posts, products, testimonials,
-              enquiries and default theme lands in the next phase.
-            </p>
+          <div className="mt-9 grid gap-4 sm:grid-cols-2">
+            {sections.map((section) => (
+              <Link key={section.to} to={section.to} className="luxe-card p-7">
+                <p className="font-display text-[12px] tracking-[0.2em] text-gold uppercase">{section.label}</p>
+                <p className="mt-3 text-sm text-muted-foreground">{section.description}</p>
+              </Link>
+            ))}
           </div>
         )}
         <button
