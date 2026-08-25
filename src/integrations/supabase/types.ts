@@ -242,6 +242,51 @@ export type Database = {
         }
         Relationships: []
       }
+      download_logs: {
+        Row: {
+          created_at: string
+          id: string
+          ip_address: string | null
+          order_id: string | null
+          outcome: string
+          product_id: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          ip_address?: string | null
+          order_id?: string | null
+          outcome?: string
+          product_id?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          ip_address?: string | null
+          order_id?: string | null
+          outcome?: string
+          product_id?: string | null
+          user_agent?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "download_logs_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "download_logs_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       enquiries: {
         Row: {
           admin_note: string | null
@@ -341,6 +386,158 @@ export type Database = {
           title?: string
           updated_at?: string
           url?: string
+        }
+        Relationships: []
+      }
+      orders: {
+        Row: {
+          admin_note: string | null
+          amount: number
+          buyer_email: string
+          buyer_name: string | null
+          created_at: string
+          currency: string
+          download_count: number
+          download_limit: number
+          download_token: string
+          id: string
+          ip_address: string | null
+          kind: string
+          product_id: string
+          provider: string | null
+          provider_reference: string | null
+          reference: string
+          status: string
+          token_expires_at: string
+          updated_at: string
+        }
+        Insert: {
+          admin_note?: string | null
+          amount?: number
+          buyer_email: string
+          buyer_name?: string | null
+          created_at?: string
+          currency?: string
+          download_count?: number
+          download_limit?: number
+          download_token: string
+          id?: string
+          ip_address?: string | null
+          kind?: string
+          product_id: string
+          provider?: string | null
+          provider_reference?: string | null
+          reference: string
+          status?: string
+          token_expires_at?: string
+          updated_at?: string
+        }
+        Update: {
+          admin_note?: string | null
+          amount?: number
+          buyer_email?: string
+          buyer_name?: string | null
+          created_at?: string
+          currency?: string
+          download_count?: number
+          download_limit?: number
+          download_token?: string
+          id?: string
+          ip_address?: string | null
+          kind?: string
+          product_id?: string
+          provider?: string | null
+          provider_reference?: string | null
+          reference?: string
+          status?: string
+          token_expires_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "orders_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      products: {
+        Row: {
+          category: string
+          cover_image_alt: string | null
+          cover_image_url: string | null
+          created_at: string
+          currency: string
+          download_count: number
+          download_limit: number | null
+          external_url: string | null
+          featured: boolean
+          features: Json
+          file_storage_path: string | null
+          full_description: string
+          gallery: Json
+          id: string
+          price: number
+          product_type: string
+          published: boolean
+          purchase_count: number
+          short_description: string
+          slug: string
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category?: string
+          cover_image_alt?: string | null
+          cover_image_url?: string | null
+          created_at?: string
+          currency?: string
+          download_count?: number
+          download_limit?: number | null
+          external_url?: string | null
+          featured?: boolean
+          features?: Json
+          file_storage_path?: string | null
+          full_description?: string
+          gallery?: Json
+          id?: string
+          price?: number
+          product_type?: string
+          published?: boolean
+          purchase_count?: number
+          short_description?: string
+          slug: string
+          sort_order?: number
+          title?: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          cover_image_alt?: string | null
+          cover_image_url?: string | null
+          created_at?: string
+          currency?: string
+          download_count?: number
+          download_limit?: number | null
+          external_url?: string | null
+          featured?: boolean
+          features?: Json
+          file_storage_path?: string | null
+          full_description?: string
+          gallery?: Json
+          id?: string
+          price?: number
+          product_type?: string
+          published?: boolean
+          purchase_count?: number
+          short_description?: string
+          slug?: string
+          sort_order?: number
+          title?: string
+          updated_at?: string
         }
         Relationships: []
       }
