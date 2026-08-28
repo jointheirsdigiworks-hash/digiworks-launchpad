@@ -242,6 +242,60 @@ export type Database = {
         }
         Relationships: []
       }
+      chat_sessions: {
+        Row: {
+          admin_note: string | null
+          created_at: string
+          handoff_channel: string | null
+          handoff_note: string | null
+          handoff_topic: string | null
+          id: string
+          ip_address: string | null
+          message_count: number
+          session_key: string
+          status: string
+          transcript: Json
+          updated_at: string
+          visitor_email: string | null
+          visitor_name: string | null
+          visitor_phone: string | null
+        }
+        Insert: {
+          admin_note?: string | null
+          created_at?: string
+          handoff_channel?: string | null
+          handoff_note?: string | null
+          handoff_topic?: string | null
+          id?: string
+          ip_address?: string | null
+          message_count?: number
+          session_key: string
+          status?: string
+          transcript?: Json
+          updated_at?: string
+          visitor_email?: string | null
+          visitor_name?: string | null
+          visitor_phone?: string | null
+        }
+        Update: {
+          admin_note?: string | null
+          created_at?: string
+          handoff_channel?: string | null
+          handoff_note?: string | null
+          handoff_topic?: string | null
+          id?: string
+          ip_address?: string | null
+          message_count?: number
+          session_key?: string
+          status?: string
+          transcript?: Json
+          updated_at?: string
+          visitor_email?: string | null
+          visitor_name?: string | null
+          visitor_phone?: string | null
+        }
+        Relationships: []
+      }
       download_logs: {
         Row: {
           created_at: string
