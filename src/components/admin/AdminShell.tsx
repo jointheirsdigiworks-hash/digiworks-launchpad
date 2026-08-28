@@ -12,6 +12,7 @@ const links = [
   { to: "/admin/orders", label: "Orders" },
   { to: "/admin/submissions", label: "Submissions" },
   { to: "/admin/media", label: "Media" },
+  { to: "/admin/chats", label: "JDBot Chats" },
   { to: "/admin/seo", label: "SEO" },
   { to: "/admin/settings", label: "Settings" },
 ] as const;
