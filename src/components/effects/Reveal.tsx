@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffectSettings } from "./useEffectSettings";
 
 /**
  * Scroll reveal wrapper — fade-up + subtle scale on first entry.
