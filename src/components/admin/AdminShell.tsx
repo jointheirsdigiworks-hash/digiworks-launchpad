@@ -8,6 +8,8 @@ const links = [
   { to: "/admin/portfolio", label: "Portfolio" },
   { to: "/admin/blog", label: "Blog" },
   { to: "/admin/team", label: "Team" },
+  { to: "/admin/products", label: "Products" },
+  { to: "/admin/orders", label: "Orders" },
   { to: "/admin/submissions", label: "Submissions" },
   { to: "/admin/media", label: "Media" },
   { to: "/admin/seo", label: "SEO" },

@@ -9,7 +9,7 @@ import { site, whatsappHref } from "@/lib/site";
 type Message = { role: "user" | "assistant"; content: string };
 
 const greeting =
-  "Hello! I'm JDBot 👋 How can JointHeirs DigiWorks help you grow today?";
+  "Hello! I'm JDBot — how can JointHeirs DigiWorks help you grow today?";
 
 const quickLinks = [
   { label: "Request a Quote", to: "/quote" },

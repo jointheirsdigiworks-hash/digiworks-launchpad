@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { HeroParticles } from "@/components/effects/HeroParticles";
 import heroAds from "@/assets/hero-ads.jpg";
 import heroAutomation from "@/assets/hero-automation.jpg";
 import heroBranding from "@/assets/hero-branding.jpg";
@@ -105,6 +106,7 @@ export function HeroFlipCards() {
         if (Math.abs(delta) > 48) (delta < 0 ? next : prev)();
       }}
     >
+      <HeroParticles />
       <div className="relative h-[86vh] min-h-[540px] w-full">
         {cards.map((card, i) => {
           const active = i === index;

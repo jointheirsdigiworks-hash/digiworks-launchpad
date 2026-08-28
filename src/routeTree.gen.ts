@@ -18,12 +18,15 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FounderRouteImport } from './routes/founder'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as QuoteRouteImport } from './routes/quote'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
 import { Route as AdminMediaRouteImport } from './routes/admin.media'
+import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
 import { Route as AdminPortfolioRouteImport } from './routes/admin.portfolio'
+import { Route as AdminProductsRouteImport } from './routes/admin.products'
 import { Route as AdminSeoRouteImport } from './routes/admin.seo'
 import { Route as AdminServicesRouteImport } from './routes/admin.services'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
@@ -84,6 +87,11 @@ const QuoteRoute = QuoteRouteImport.update({
   path: '/quote',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -109,9 +117,19 @@ const AdminMediaRoute = AdminMediaRouteImport.update({
   path: '/admin/media',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminOrdersRoute = AdminOrdersRouteImport.update({
+  id: '/admin/orders',
+  path: '/admin/orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminPortfolioRoute = AdminPortfolioRouteImport.update({
   id: '/admin/portfolio',
   path: '/admin/portfolio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminProductsRoute = AdminProductsRouteImport.update({
+  id: '/admin/products',
+  path: '/admin/products',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminSeoRoute = AdminSeoRouteImport.update({
@@ -195,11 +213,14 @@ export interface FileRoutesByFullPath {
   '/founder': typeof FounderRoute
   '/privacy': typeof PrivacyRoute
   '/quote': typeof QuoteRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/media': typeof AdminMediaRoute
+  '/admin/orders': typeof AdminOrdersRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
+  '/admin/products': typeof AdminProductsRoute
   '/admin/seo': typeof AdminSeoRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
@@ -226,11 +247,14 @@ export interface FileRoutesByTo {
   '/founder': typeof FounderRoute
   '/privacy': typeof PrivacyRoute
   '/quote': typeof QuoteRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/media': typeof AdminMediaRoute
+  '/admin/orders': typeof AdminOrdersRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
+  '/admin/products': typeof AdminProductsRoute
   '/admin/seo': typeof AdminSeoRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
@@ -258,11 +282,14 @@ export interface FileRoutesById {
   '/founder': typeof FounderRoute
   '/privacy': typeof PrivacyRoute
   '/quote': typeof QuoteRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/media': typeof AdminMediaRoute
+  '/admin/orders': typeof AdminOrdersRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
+  '/admin/products': typeof AdminProductsRoute
   '/admin/seo': typeof AdminSeoRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
@@ -291,11 +318,14 @@ export interface FileRouteTypes {
     | '/founder'
     | '/privacy'
     | '/quote'
+    | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
     | '/admin/blog'
     | '/admin/media'
+    | '/admin/orders'
     | '/admin/portfolio'
+    | '/admin/products'
     | '/admin/seo'
     | '/admin/services'
     | '/admin/settings'
@@ -322,11 +352,14 @@ export interface FileRouteTypes {
     | '/founder'
     | '/privacy'
     | '/quote'
+    | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
     | '/admin/blog'
     | '/admin/media'
+    | '/admin/orders'
     | '/admin/portfolio'
+    | '/admin/products'
     | '/admin/seo'
     | '/admin/services'
     | '/admin/settings'
@@ -353,11 +386,14 @@ export interface FileRouteTypes {
     | '/founder'
     | '/privacy'
     | '/quote'
+    | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
     | '/admin/blog'
     | '/admin/media'
+    | '/admin/orders'
     | '/admin/portfolio'
+    | '/admin/products'
     | '/admin/seo'
     | '/admin/services'
     | '/admin/settings'
@@ -385,11 +421,14 @@ export interface RootRouteChildren {
   FounderRoute: typeof FounderRoute
   PrivacyRoute: typeof PrivacyRoute
   QuoteRoute: typeof QuoteRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
   AdminBlogRoute: typeof AdminBlogRoute
   AdminMediaRoute: typeof AdminMediaRoute
+  AdminOrdersRoute: typeof AdminOrdersRoute
   AdminPortfolioRoute: typeof AdminPortfolioRoute
+  AdminProductsRoute: typeof AdminProductsRoute
   AdminSeoRoute: typeof AdminSeoRoute
   AdminServicesRoute: typeof AdminServicesRoute
   AdminSettingsRoute: typeof AdminSettingsRoute
@@ -472,6 +511,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuoteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -507,11 +553,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminMediaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/orders': {
+      id: '/admin/orders'
+      path: '/admin/orders'
+      fullPath: '/admin/orders'
+      preLoaderRoute: typeof AdminOrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/portfolio': {
       id: '/admin/portfolio'
       path: '/admin/portfolio'
       fullPath: '/admin/portfolio'
       preLoaderRoute: typeof AdminPortfolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/products': {
+      id: '/admin/products'
+      path: '/admin/products'
+      fullPath: '/admin/products'
+      preLoaderRoute: typeof AdminProductsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/seo': {
@@ -625,11 +685,14 @@ const rootRouteChildren: RootRouteChildren = {
   FounderRoute: FounderRoute,
   PrivacyRoute: PrivacyRoute,
   QuoteRoute: QuoteRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
   AdminBlogRoute: AdminBlogRoute,
   AdminMediaRoute: AdminMediaRoute,
+  AdminOrdersRoute: AdminOrdersRoute,
   AdminPortfolioRoute: AdminPortfolioRoute,
+  AdminProductsRoute: AdminProductsRoute,
   AdminSeoRoute: AdminSeoRoute,
   AdminServicesRoute: AdminServicesRoute,
   AdminSettingsRoute: AdminSettingsRoute,

@@ -13,6 +13,9 @@ const TABLES = [
   "enquiries",
   "quote_requests",
   "bookings",
+  "products",
+  "orders",
+  "download_logs",
 ] as const;
 
 type AdminTable = (typeof TABLES)[number];
@@ -31,6 +34,9 @@ const ORDER: Record<AdminTable, { column: string; ascending: boolean }> = {
   enquiries: { column: "created_at", ascending: false },
   quote_requests: { column: "created_at", ascending: false },
   bookings: { column: "created_at", ascending: false },
+  products: { column: "sort_order", ascending: true },
+  orders: { column: "created_at", ascending: false },
+  download_logs: { column: "created_at", ascending: false },
 };
 
 const tableSchema = z.enum(TABLES);

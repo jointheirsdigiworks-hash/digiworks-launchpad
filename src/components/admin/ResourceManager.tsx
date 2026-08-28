@@ -25,7 +25,10 @@ export type ResourceTable =
   | "team_members"
   | "availability_slots"
   | "media_library"
-  | "seo_settings";
+  | "seo_settings"
+  | "products"
+  | "orders"
+  | "download_logs";
 
 const inputClass =
   "mt-2 w-full rounded-md border border-input bg-background/60 px-4 py-3 text-sm outline-none focus:border-gold";
