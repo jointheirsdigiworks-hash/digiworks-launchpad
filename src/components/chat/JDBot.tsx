@@ -199,44 +199,147 @@ export function JDBot() {
             )}
           </div>
 
-          <form
-            className="flex items-center gap-2 border-t border-border px-4 py-3"
-            onSubmit={(event) => {
-              event.preventDefault();
-              send(input);
-            }}
-          >
-            <label htmlFor="jdbot-input" className="sr-only">
-              Message JDBot
-            </label>
-            <input
-              id="jdbot-input"
-              value={input}
-              maxLength={1000}
-              onChange={(event) => setInput(event.target.value)}
-              placeholder="Ask about services, process, products…"
-              className="flex-1 rounded-full border border-input bg-background/60 px-4 py-2.5 text-sm outline-none focus:border-gold"
-            />
-            <button
-              type="submit"
-              disabled={mutation.isPending}
-              aria-label="Send message"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gold text-ink disabled:opacity-60"
+          {handoff ? (
+            <form
+              className="space-y-3 border-t border-border px-4 py-4"
+              onSubmit={(event) => {
+                event.preventDefault();
+                if (canSubmit && !handoffMutation.isPending) handoffMutation.mutate();
+              }}
             >
-              <Send className="h-4 w-4" />
-            </button>
-          </form>
+              <p className="font-display text-[10px] tracking-[0.24em] text-gold uppercase">Talk to a specialist</p>
+              <p className="text-[11px] text-muted-foreground">
+                Share your details and we'll continue on your preferred channel.
+              </p>
+              <input
+                aria-label="Your name"
+                value={form.name}
+                maxLength={100}
+                required
+                onChange={(event) => setForm({ ...form, name: event.target.value })}
+                placeholder="Full name"
+                className="w-full rounded-md border border-input bg-background/60 px-3 py-2 text-sm outline-none focus:border-gold"
+              />
+              <input
+                aria-label="Your email"
+                type="email"
+                value={form.email}
+                maxLength={255}
+                required
+                onChange={(event) => setForm({ ...form, email: event.target.value })}
+                placeholder="Email address"
+                className="w-full rounded-md border border-input bg-background/60 px-3 py-2 text-sm outline-none focus:border-gold"
+              />
+              <input
+                aria-label="Your phone number"
+                value={form.phone}
+                maxLength={40}
+                onChange={(event) => setForm({ ...form, phone: event.target.value })}
+                placeholder="Phone / WhatsApp number (optional)"
+                className="w-full rounded-md border border-input bg-background/60 px-3 py-2 text-sm outline-none focus:border-gold"
+              />
+              <input
+                aria-label="What do you need help with"
+                value={form.topic}
+                maxLength={120}
+                onChange={(event) => setForm({ ...form, topic: event.target.value })}
+                placeholder="What do you need? e.g. website, ads, branding"
+                className="w-full rounded-md border border-input bg-background/60 px-3 py-2 text-sm outline-none focus:border-gold"
+              />
+              <textarea
+                aria-label="Extra details"
+                value={form.note}
+                rows={2}
+                maxLength={1200}
+                onChange={(event) => setForm({ ...form, note: event.target.value })}
+                placeholder="Anything else we should know?"
+                className="w-full rounded-md border border-input bg-background/60 px-3 py-2 text-sm outline-none focus:border-gold"
+              />
+              <div className="flex flex-wrap gap-2">
+                {channels.map((option) => (
+                  <button
+                    key={option.value}
+                    type="button"
+                    onClick={() => setChannel(option.value)}
+                    aria-pressed={channel === option.value}
+                    className={`rounded-full border px-3 py-1.5 text-xs ${
+                      channel === option.value
+                        ? "border-gold bg-gold text-ink"
+                        : "border-border text-muted-foreground hover:border-gold hover:text-gold"
+                    }`}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  type="submit"
+                  disabled={!canSubmit || handoffMutation.isPending}
+                  className="flex-1 rounded-full bg-gold px-4 py-2 font-display text-[11px] tracking-[0.16em] text-ink uppercase disabled:opacity-60"
+                >
+                  {handoffMutation.isPending ? "Sending…" : "Connect me"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setHandoff(false)}
+                  className="rounded-full border border-border px-4 py-2 font-display text-[11px] tracking-[0.16em] uppercase"
+                >
+                  Back
+                </button>
+              </div>
+            </form>
+          ) : (
+            <>
+              <form
+                className="flex items-center gap-2 border-t border-border px-4 py-3"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  send(input);
+                }}
+              >
+                <label htmlFor="jdbot-input" className="sr-only">
+                  Message JDBot
+                </label>
+                <input
+                  id="jdbot-input"
+                  value={input}
+                  maxLength={1000}
+                  onChange={(event) => setInput(event.target.value)}
+                  placeholder="Ask about services, process, products…"
+                  className="flex-1 rounded-full border border-input bg-background/60 px-4 py-2.5 text-sm outline-none focus:border-gold"
+                />
+                <button
+                  type="submit"
+                  disabled={mutation.isPending}
+                  aria-label="Send message"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gold text-ink disabled:opacity-60"
+                >
+                  <Send className="h-4 w-4" />
+                </button>
+              </form>
 
-          <p className="border-t border-border px-4 py-2.5 text-[11px] text-muted-foreground">
-            Prefer a human?{" "}
-            <a href={whatsappHref} target="_blank" rel="noreferrer" className="text-gold">
-              WhatsApp {site.whatsappDisplay}
-            </a>{" "}
-            ·{" "}
-            <a href={`mailto:${site.email}`} className="text-gold">
-              Email us
-            </a>
-          </p>
+              <div className="flex flex-wrap items-center gap-2 border-t border-border px-4 py-2.5 text-[11px] text-muted-foreground">
+                <button
+                  type="button"
+                  onClick={() => setHandoff(true)}
+                  className="rounded-full border border-gold-soft px-3 py-1.5 text-[11px] text-gold uppercase"
+                >
+                  Talk to a human
+                </button>
+                <span>
+                  or{" "}
+                  <a href={whatsappHref} target="_blank" rel="noreferrer" className="text-gold">
+                    WhatsApp {site.whatsappDisplay}
+                  </a>{" "}
+                  ·{" "}
+                  <a href={`mailto:${site.email}`} className="text-gold">
+                    Email us
+                  </a>
+                </span>
+              </div>
+            </>
+          )}
         </section>
       )}
     </>
