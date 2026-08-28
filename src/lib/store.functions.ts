@@ -157,6 +157,29 @@ export const createGuestOrder = createServerFn({ method: "POST" })
       `Payment required: ${requiresPayment ? "yes" : "no (free downloads)"}`,
     ]);
 
+    // Confirmation / download email per item, using admin-editable templates.
+    const { sendOrderEmail } = await import("./email.server");
+    const origin =
+      getRequestHeader("origin") ??
+      (getRequestHeader("host") ? `https://${getRequestHeader("host")}` : "");
+    const expiresLabel = new Date(expires).toUTCString();
+    await Promise.all(
+      items.map((item) => {
+        const row = rows.find((entry) => entry.reference === item.reference);
+        return sendOrderEmail({
+          to: data.email,
+          name: data.name,
+          product: item.title,
+          reference: item.reference,
+          amount: `${item.currency} ${item.amount.toLocaleString()}`,
+          paid: item.status !== "completed",
+          downloadUrl: `${origin}/api/public/download/${item.token}`,
+          expires: expiresLabel,
+          limit: row?.download_limit ?? downloadLimit,
+        });
+      }),
+    );
+
     return { groupReference: ref, items, requiresPayment, expiresAt: expires };
   });
 
