@@ -3,7 +3,8 @@ import { useMutation } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { Bot, Send, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { askJdBot } from "@/lib/jdbot.functions";
+import { toast } from "sonner";
+import { askJdBot, requestChatHandoff } from "@/lib/jdbot.functions";
 import { site, whatsappHref } from "@/lib/site";
 
 type Message = { role: "user" | "assistant"; content: string };
@@ -27,15 +28,36 @@ const prompts = [
   "How do I get pricing?",
 ] as const;
 
+const channels = [
+  { value: "whatsapp", label: "WhatsApp" },
+  { value: "email", label: "Email" },
+  { value: "call", label: "Phone call" },
+] as const;
+
+type Channel = (typeof channels)[number]["value"];
+
 export function JDBot() {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([{ role: "assistant", content: greeting }]);
+  const [sessionKey, setSessionKey] = useState("");
+  const [handoff, setHandoff] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", phone: "", topic: "", note: "" });
+  const [channel, setChannel] = useState<Channel>("whatsapp");
   const ask = useServerFn(askJdBot);
+  const submitHandoff = useServerFn(requestChatHandoff);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const stored = window.sessionStorage.getItem("jdbot-session");
+    const key = stored ?? `jdbot-${crypto.randomUUID()}`;
+    if (!stored) window.sessionStorage.setItem("jdbot-session", key);
+    setSessionKey(key);
+  }, []);
+
   const mutation = useMutation({
-    mutationFn: async (history: Message[]) => ask({ data: { messages: history.slice(-12) } }),
+    mutationFn: async (history: Message[]) =>
+      ask({ data: { messages: history.slice(-12), ...(sessionKey ? { sessionKey } : {}) } }),
     onSuccess: (result) => setMessages((current) => [...current, { role: "assistant", content: result.reply }]),
     onError: () =>
       setMessages((current) => [
@@ -47,9 +69,49 @@ export function JDBot() {
       ]),
   });
 
+  const handoffMutation = useMutation({
+    mutationFn: async () =>
+      submitHandoff({
+        data: {
+          sessionKey,
+          name: form.name.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim(),
+          channel,
+          topic: form.topic.trim(),
+          note: form.note.trim(),
+          messages: messages.slice(-20),
+        },
+      }),
+    onSuccess: () => {
+      toast.success("Thank you — our team has your details.");
+      setHandoff(false);
+      setMessages((current) => [
+        ...current,
+        {
+          role: "assistant",
+          content: `Thanks ${form.name.trim() || "there"} — a JointHeirs specialist will reach you by ${channel}. You can continue the conversation now if you'd like.`,
+        },
+      ]);
+      if (channel === "whatsapp") {
+        const text = `Hello JointHeirs DigiWorks, this is ${form.name.trim()}. ${form.topic.trim() || "I'd like to make an enquiry"}. ${form.note.trim()}`;
+        window.open(
+          `https://wa.me/${site.whatsapp.replace("+", "")}?text=${encodeURIComponent(text)}`,
+          "_blank",
+          "noreferrer",
+        );
+      } else if (channel === "email") {
+        window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(
+          form.topic.trim() || "Enquiry from JDBot",
+        )}&body=${encodeURIComponent(`${form.note.trim()}\n\n${form.name.trim()} · ${form.phone.trim()}`)}`;
+      }
+    },
+    onError: (error: Error) => toast.error(error.message || "Could not send your details. Please try again."),
+  });
+
   useEffect(() => {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-  }, [messages, mutation.isPending, open]);
+  }, [messages, mutation.isPending, open, handoff]);
 
   function send(text: string) {
     const trimmed = text.trim().slice(0, 1000);
@@ -59,6 +121,9 @@ export function JDBot() {
     setInput("");
     mutation.mutate(history.filter((m) => m.role === "user" || m.content !== greeting));
   }
+
+  const canSubmit = form.name.trim().length >= 2 && /.+@.+\..+/.test(form.email.trim());
+
 
   return (
     <>
