@@ -267,7 +267,12 @@ export const Route = createFileRoute("/admin/settings")({
       title="Site Settings"
       description="Edit global content blocks (founder story, contact details, robots) and strategy session availability."
     >
-      <SettingsEditor />
+      <EffectsPanel />
+      <div className="mt-14">
+        <SettingsEditor />
+      </div>
+      <EmailTemplatesPanel />
+
       <div className="mt-14">
         <h2 className="font-display text-[12px] tracking-[0.22em] uppercase">Strategy session availability</h2>
         <div className="mt-5">
