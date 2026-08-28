@@ -28,7 +28,8 @@ export type ResourceTable =
   | "seo_settings"
   | "products"
   | "orders"
-  | "download_logs";
+  | "download_logs"
+  | "chat_sessions";
 
 const inputClass =
   "mt-2 w-full rounded-md border border-input bg-background/60 px-4 py-3 text-sm outline-none focus:border-gold";
