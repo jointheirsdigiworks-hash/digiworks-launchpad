@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { HeroParticles } from "@/components/effects/HeroParticles";
 import heroAds from "@/assets/hero-ads.jpg";
 import heroAutomation from "@/assets/hero-automation.jpg";
 import heroBranding from "@/assets/hero-branding.jpg";
