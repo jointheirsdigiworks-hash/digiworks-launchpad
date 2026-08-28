@@ -3,8 +3,7 @@ import { whatsappHref } from "@/lib/site";
 
 export function FloatingButtons() {
   return (
-    <>
-      <a
+    <
         href={whatsappHref}
         target="_blank"
         rel="noreferrer"
