@@ -16,6 +16,7 @@ const TABLES = [
   "products",
   "orders",
   "download_logs",
+  "chat_sessions",
 ] as const;
 
 type AdminTable = (typeof TABLES)[number];
