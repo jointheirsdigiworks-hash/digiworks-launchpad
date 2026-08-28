@@ -157,6 +157,7 @@ function RootComponent() {
         <Outlet />
         <Footer />
         <FloatingButtons />
+        <JDBot />
         <Toaster position="bottom-center" />
       </ThemeProvider>
     </QueryClientProvider>
