@@ -13,6 +13,9 @@ const TABLES = [
   "enquiries",
   "quote_requests",
   "bookings",
+  "products",
+  "orders",
+  "download_logs",
 ] as const;
 
 type AdminTable = (typeof TABLES)[number];
