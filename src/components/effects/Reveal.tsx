@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffectSettings } from "./useEffectSettings";
 
 /**
  * Scroll reveal wrapper — fade-up + subtle scale on first entry.
@@ -15,11 +16,12 @@ export function Reveal({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(false);
+  const { reveal_animations: enabled } = useEffectSettings();
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (!enabled || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setShown(true);
       return;
     }
@@ -36,7 +38,9 @@ export function Reveal({
     );
     observer.observe(node);
     return () => observer.disconnect();
-  }, []);
+  }, [enabled]);
+
+
 
   return (
     <div

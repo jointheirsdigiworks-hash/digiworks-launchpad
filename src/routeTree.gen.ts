@@ -23,6 +23,7 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
+import { Route as AdminChatsRouteImport } from './routes/admin.chats'
 import { Route as AdminMediaRouteImport } from './routes/admin.media'
 import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
 import { Route as AdminPortfolioRouteImport } from './routes/admin.portfolio'
@@ -110,6 +111,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
 const AdminBlogRoute = AdminBlogRouteImport.update({
   id: '/admin/blog',
   path: '/admin/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminChatsRoute = AdminChatsRouteImport.update({
+  id: '/admin/chats',
+  path: '/admin/chats',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminMediaRoute = AdminMediaRouteImport.update({
@@ -217,6 +223,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/admin/blog': typeof AdminBlogRoute
+  '/admin/chats': typeof AdminChatsRoute
   '/admin/media': typeof AdminMediaRoute
   '/admin/orders': typeof AdminOrdersRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
@@ -251,6 +258,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/admin/blog': typeof AdminBlogRoute
+  '/admin/chats': typeof AdminChatsRoute
   '/admin/media': typeof AdminMediaRoute
   '/admin/orders': typeof AdminOrdersRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
@@ -286,6 +294,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/admin/blog': typeof AdminBlogRoute
+  '/admin/chats': typeof AdminChatsRoute
   '/admin/media': typeof AdminMediaRoute
   '/admin/orders': typeof AdminOrdersRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
@@ -322,6 +331,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/thank-you'
     | '/admin/blog'
+    | '/admin/chats'
     | '/admin/media'
     | '/admin/orders'
     | '/admin/portfolio'
@@ -356,6 +366,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/thank-you'
     | '/admin/blog'
+    | '/admin/chats'
     | '/admin/media'
     | '/admin/orders'
     | '/admin/portfolio'
@@ -390,6 +401,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/thank-you'
     | '/admin/blog'
+    | '/admin/chats'
     | '/admin/media'
     | '/admin/orders'
     | '/admin/portfolio'
@@ -425,6 +437,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
   AdminBlogRoute: typeof AdminBlogRoute
+  AdminChatsRoute: typeof AdminChatsRoute
   AdminMediaRoute: typeof AdminMediaRoute
   AdminOrdersRoute: typeof AdminOrdersRoute
   AdminPortfolioRoute: typeof AdminPortfolioRoute
@@ -544,6 +557,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/blog'
       fullPath: '/admin/blog'
       preLoaderRoute: typeof AdminBlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/chats': {
+      id: '/admin/chats'
+      path: '/admin/chats'
+      fullPath: '/admin/chats'
+      preLoaderRoute: typeof AdminChatsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/media': {
@@ -689,6 +709,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
   AdminBlogRoute: AdminBlogRoute,
+  AdminChatsRoute: AdminChatsRoute,
   AdminMediaRoute: AdminMediaRoute,
   AdminOrdersRoute: AdminOrdersRoute,
   AdminPortfolioRoute: AdminPortfolioRoute,

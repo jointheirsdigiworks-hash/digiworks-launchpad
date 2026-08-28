@@ -10,7 +10,7 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "14.17"
+    PostgrestVersion: "14.5"
   }
   public: {
     Tables: {
@@ -239,6 +239,60 @@ export type Database = {
           testimonial_quote?: string | null
           title?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      chat_sessions: {
+        Row: {
+          admin_note: string | null
+          created_at: string
+          handoff_channel: string | null
+          handoff_note: string | null
+          handoff_topic: string | null
+          id: string
+          ip_address: string | null
+          message_count: number
+          session_key: string
+          status: string
+          transcript: Json
+          updated_at: string
+          visitor_email: string | null
+          visitor_name: string | null
+          visitor_phone: string | null
+        }
+        Insert: {
+          admin_note?: string | null
+          created_at?: string
+          handoff_channel?: string | null
+          handoff_note?: string | null
+          handoff_topic?: string | null
+          id?: string
+          ip_address?: string | null
+          message_count?: number
+          session_key: string
+          status?: string
+          transcript?: Json
+          updated_at?: string
+          visitor_email?: string | null
+          visitor_name?: string | null
+          visitor_phone?: string | null
+        }
+        Update: {
+          admin_note?: string | null
+          created_at?: string
+          handoff_channel?: string | null
+          handoff_note?: string | null
+          handoff_topic?: string | null
+          id?: string
+          ip_address?: string | null
+          message_count?: number
+          session_key?: string
+          status?: string
+          transcript?: Json
+          updated_at?: string
+          visitor_email?: string | null
+          visitor_name?: string | null
+          visitor_phone?: string | null
         }
         Relationships: []
       }

@@ -1,20 +1,50 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
+const messageSchema = z.object({
+  role: z.enum(["user", "assistant"]),
+  content: z.string().trim().min(1).max(1200),
+});
+
 const askSchema = z.object({
-  messages: z
-    .array(
-      z.object({
-        role: z.enum(["user", "assistant"]),
-        content: z.string().trim().min(1).max(1200),
-      }),
-    )
-    .min(1)
-    .max(14),
+  messages: z.array(messageSchema).min(1).max(14),
+  sessionKey: z.string().trim().min(8).max(60).optional(),
+});
+
+const handoffSchema = z.object({
+  sessionKey: z.string().trim().min(8).max(60),
+  name: z.string().trim().min(2).max(100),
+  email: z.string().trim().email().max(255),
+  phone: z.string().trim().max(40).optional().or(z.literal("")),
+  channel: z.enum(["whatsapp", "email", "call"]),
+  topic: z.string().trim().max(120).optional().or(z.literal("")),
+  note: z.string().trim().max(1200).optional().or(z.literal("")),
+  messages: z.array(messageSchema).max(30).optional(),
 });
 
 const FALLBACK =
   "I'm not certain about that one. Please reach our team directly — WhatsApp +234 902 776 9832, call 0903 114 7808, or email jointheirsdigiworks@gmail.com and we'll help right away.";
+
+/** Records the running transcript of a JDBot conversation for admin review. */
+async function saveTranscript(sessionKey: string, messages: { role: string; content: string }[]) {
+  try {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { getRequestHeader } = await import("@tanstack/react-start/server");
+    const ip =
+      getRequestHeader("cf-connecting-ip") ?? getRequestHeader("x-forwarded-for")?.split(",")[0]?.trim() ?? null;
+    await supabaseAdmin.from("chat_sessions").upsert(
+      {
+        session_key: sessionKey,
+        transcript: messages.slice(-40),
+        message_count: messages.length,
+        ip_address: ip,
+      },
+      { onConflict: "session_key" },
+    );
+  } catch (error) {
+    console.error("[jdbot] transcript log failed", error);
+  }
+}
 
 /** JDBot — answers visitor questions about services, process, products and contact. */
 export const askJdBot = createServerFn({ method: "POST" })
@@ -49,6 +79,7 @@ export const askJdBot = createServerFn({ method: "POST" })
       `If you cannot answer confidently, reply exactly: ${FALLBACK}`,
     ].join("\n");
 
+    let reply = FALLBACK;
     try {
       const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
         method: "POST",
@@ -58,15 +89,67 @@ export const askJdBot = createServerFn({ method: "POST" })
           messages: [{ role: "system", content: system }, ...data.messages],
         }),
       });
-      if (!response.ok) {
+      if (response.ok) {
+        const payload = (await response.json()) as { choices?: { message?: { content?: string } }[] };
+        const text = payload.choices?.[0]?.message?.content?.trim();
+        if (text) reply = text;
+      } else {
         console.error(`[jdbot] gateway responded ${response.status}`);
-        return { reply: FALLBACK };
       }
-      const payload = (await response.json()) as { choices?: { message?: { content?: string } }[] };
-      const reply = payload.choices?.[0]?.message?.content?.trim();
-      return { reply: reply && reply.length > 0 ? reply : FALLBACK };
     } catch (error) {
       console.error("[jdbot] request failed", error);
-      return { reply: FALLBACK };
     }
+
+    if (data.sessionKey) {
+      await saveTranscript(data.sessionKey, [...data.messages, { role: "assistant", content: reply }]);
+    }
+    return { reply };
+  });
+
+/**
+ * Human handoff: collects the visitor's details before they are escalated to
+ * WhatsApp or email, stores them against the chat session and alerts the team.
+ */
+export const requestChatHandoff = createServerFn({ method: "POST" })
+  .inputValidator((input: unknown) => handoffSchema.parse(input))
+  .handler(async ({ data }) => {
+    const { enforceRateLimit } = await import("./rate-limit.server");
+    await enforceRateLimit("jdbot-handoff", 10, 15);
+
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { getRequestHeader } = await import("@tanstack/react-start/server");
+    const ip =
+      getRequestHeader("cf-connecting-ip") ?? getRequestHeader("x-forwarded-for")?.split(",")[0]?.trim() ?? null;
+
+    const payload = {
+      session_key: data.sessionKey,
+      visitor_name: data.name,
+      visitor_email: data.email,
+      visitor_phone: data.phone || null,
+      handoff_channel: data.channel,
+      handoff_topic: data.topic || null,
+      handoff_note: data.note || null,
+      status: "handoff_requested",
+      ip_address: ip,
+      ...(data.messages?.length
+        ? { transcript: data.messages.slice(-40), message_count: data.messages.length }
+        : {}),
+    };
+
+    const { error } = await supabaseAdmin
+      .from("chat_sessions")
+      .upsert(payload, { onConflict: "session_key" });
+    if (error) throw new Error("We could not save your details. Please try again.");
+
+    const { notifyAdmin } = await import("./notify.server");
+    await notifyAdmin(`JDBot handoff requested — ${data.name}`, [
+      `Preferred channel: ${data.channel}`,
+      `Name: ${data.name}`,
+      `Email: ${data.email}`,
+      `Phone: ${data.phone || "not provided"}`,
+      `Topic: ${data.topic || "not provided"}`,
+      `Note: ${data.note || "none"}`,
+    ]);
+
+    return { ok: true as const };
   });
