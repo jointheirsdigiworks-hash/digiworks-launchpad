@@ -18,6 +18,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FounderRouteImport } from './routes/founder'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as QuoteRouteImport } from './routes/quote'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
@@ -84,6 +85,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const QuoteRoute = QuoteRouteImport.update({
   id: '/quote',
   path: '/quote',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TermsRoute = TermsRouteImport.update({
@@ -207,6 +213,7 @@ export interface FileRoutesByFullPath {
   '/founder': typeof FounderRoute
   '/privacy': typeof PrivacyRoute
   '/quote': typeof QuoteRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/admin/blog': typeof AdminBlogRoute
@@ -240,6 +247,7 @@ export interface FileRoutesByTo {
   '/founder': typeof FounderRoute
   '/privacy': typeof PrivacyRoute
   '/quote': typeof QuoteRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/admin/blog': typeof AdminBlogRoute
@@ -274,6 +282,7 @@ export interface FileRoutesById {
   '/founder': typeof FounderRoute
   '/privacy': typeof PrivacyRoute
   '/quote': typeof QuoteRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/admin/blog': typeof AdminBlogRoute
@@ -309,6 +318,7 @@ export interface FileRouteTypes {
     | '/founder'
     | '/privacy'
     | '/quote'
+    | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
     | '/admin/blog'
@@ -342,6 +352,7 @@ export interface FileRouteTypes {
     | '/founder'
     | '/privacy'
     | '/quote'
+    | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
     | '/admin/blog'
@@ -375,6 +386,7 @@ export interface FileRouteTypes {
     | '/founder'
     | '/privacy'
     | '/quote'
+    | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
     | '/admin/blog'
@@ -409,6 +421,7 @@ export interface RootRouteChildren {
   FounderRoute: typeof FounderRoute
   PrivacyRoute: typeof PrivacyRoute
   QuoteRoute: typeof QuoteRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
   AdminBlogRoute: typeof AdminBlogRoute
@@ -496,6 +509,13 @@ declare module '@tanstack/react-router' {
       path: '/quote'
       fullPath: '/quote'
       preLoaderRoute: typeof QuoteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/terms': {
@@ -665,6 +685,7 @@ const rootRouteChildren: RootRouteChildren = {
   FounderRoute: FounderRoute,
   PrivacyRoute: PrivacyRoute,
   QuoteRoute: QuoteRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
   AdminBlogRoute: AdminBlogRoute,

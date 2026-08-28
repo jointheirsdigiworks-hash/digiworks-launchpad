@@ -48,10 +48,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           ...(products.data ?? []).map((row) => urlEntry(origin, `/shop/${row.slug}`, row.updated_at)),
         ];
 
-        const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemap.org/schemas/sitemap/0.9">\n${entries.join("\n")}\n</urlset>\n`.replace(
-          "www.sitemap.org",
-          "www.sitemaps.org",
-        );
+        const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.join("\n")}\n</urlset>\n`;
 
         return new Response(xml, {
           headers: {
