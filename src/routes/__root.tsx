@@ -15,6 +15,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingButtons } from "@/components/layout/FloatingButtons";
+import { JDBot } from "@/components/chat/JDBot";
+import { SiteEffects } from "@/components/effects/SiteEffects";
 import { ThemeProvider } from "@/lib/theme";
 import { site } from "@/lib/site";
 
