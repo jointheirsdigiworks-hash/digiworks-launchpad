@@ -105,6 +105,7 @@ export function HeroFlipCards() {
         if (Math.abs(delta) > 48) (delta < 0 ? next : prev)();
       }}
     >
+      <HeroParticles />
       <div className="relative h-[86vh] min-h-[540px] w-full">
         {cards.map((card, i) => {
           const active = i === index;
