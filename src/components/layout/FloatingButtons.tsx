@@ -1,4 +1,4 @@
-import { Bot, MessageCircle } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { whatsappHref } from "@/lib/site";
 
 export function FloatingButtons() {
