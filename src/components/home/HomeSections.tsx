@@ -13,7 +13,7 @@ import {
   Target,
 } from "lucide-react";
 import { useState } from "react";
-import founderPortraitAsset from "@/assets/founder-ulrich.jpg.asset.json";
+import founderPortraitCutout from "@/assets/founder-ulrich-cutout.png";
 import { supabase } from "@/integrations/supabase/client";
 import { services } from "@/lib/site";
 
