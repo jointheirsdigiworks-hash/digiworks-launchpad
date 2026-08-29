@@ -137,7 +137,7 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="transition-colors duration-300">
         {children}
         <Scripts />
       </body>
