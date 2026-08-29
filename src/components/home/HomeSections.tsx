@@ -69,18 +69,25 @@ export function ClientMarquee() {
 export function FounderPreview() {
   return (
     <section className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-24 sm:px-6 lg:grid-cols-2 lg:px-8">
-      <div className="relative mx-auto w-full max-w-md">
-        <div className="absolute -inset-3 rounded-lg border border-gold" aria-hidden />
-        <img
-          src={founderPortraitAsset.url}
-          alt="Portrait of Ulrich Archie-Bong, Founder, President and CEO of JointHeirs DigiWorks Agency"
-          width={1024}
-          height={1280}
-          loading="lazy"
-          decoding="async"
-          className="relative w-full rounded-md object-cover shadow-[var(--shadow-luxe)]"
-        />
-      </div>
+      <figure className="mx-auto w-full max-w-md">
+        <div className="overflow-hidden rounded-lg border border-gold-soft bg-[radial-gradient(120%_90%_at_50%_0%,color-mix(in_oklab,var(--gold)_18%,transparent),transparent_70%),linear-gradient(180deg,color-mix(in_oklab,var(--foreground)_8%,transparent),transparent)]">
+          <img
+            src={founderPortraitCutout}
+            alt="Portrait of Ulrich Archie-Bong, Founder, President and CEO of JointHeirs DigiWorks Agency"
+            width={850}
+            height={1280}
+            loading="lazy"
+            decoding="async"
+            className="w-full object-contain drop-shadow-[0_24px_50px_rgba(0,0,0,0.45)] dark:drop-shadow-[0_24px_50px_rgba(0,0,0,0.75)]"
+          />
+        </div>
+        <figcaption className="mt-5 text-center">
+          <p className="font-display text-base uppercase">Ulrich Archie-Bong</p>
+          <p className="mt-2 font-display text-[10px] tracking-[0.22em] text-gold uppercase">
+            Founder, President &amp; Chief Executive Officer
+          </p>
+        </figcaption>
+      </figure>
       <div>
         <SectionHeading
           eyebrow="Founder & Leadership"
