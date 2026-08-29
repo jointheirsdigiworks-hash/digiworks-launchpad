@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import founderPortraitAsset from "@/assets/founder-ulrich.jpg.asset.json";
+import founderPortraitCutout from "@/assets/founder-ulrich-cutout.png";
 import { PageShell } from "@/components/PageShell";
 import { getFounderPage } from "@/lib/content.functions";
 import { site } from "@/lib/site";
