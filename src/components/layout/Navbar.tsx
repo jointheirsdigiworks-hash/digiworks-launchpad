@@ -102,7 +102,7 @@ export function Navbar() {
         }`}
       >
         <div className="flex items-center justify-between px-4 py-5">
-          <img src={logo} alt="JointHeirs DigiWorks Agency logo" className="h-9 w-auto transition-[filter] duration-700 ease-out dark:invert" />
+          <BrandLogo className="h-9" />
           <button
             type="button"
             onClick={() => setOpen(false)}
