@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import founderPortraitCutout from "@/assets/founder-ulrich-cutout.png";
+import founderPortraitAsset from "@/assets/founder-ulrich.jpg.asset.json";
 import { PageShell } from "@/components/PageShell";
 import { getFounderPage } from "@/lib/content.functions";
 import { site } from "@/lib/site";
@@ -32,7 +32,7 @@ function Founder() {
   const { founder, team } = Route.useLoaderData();
   const founderName = founder.name ?? site.founder;
   const founderRole = founder.role ?? "Founder, President & Chief Executive Officer";
-  const founderPortrait = founder.portrait_url?.trim() ? founder.portrait_url : founderPortraitCutout;
+  const founderPortrait = founder.portrait_url?.trim() ? founder.portrait_url : founderPortraitAsset.url;
   const socials = (founder.socials ?? []).filter((social) => social?.url?.trim() && social?.label?.trim());
 
   const personSchema = {
