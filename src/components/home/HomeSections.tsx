@@ -13,7 +13,7 @@ import {
   Target,
 } from "lucide-react";
 import { useState } from "react";
-import founderPortraitAsset from "@/assets/founder-ulrich.jpg.asset.json";
+import founderPortraitCutout from "@/assets/founder-ulrich-cutout.png";
 import { supabase } from "@/integrations/supabase/client";
 import { services } from "@/lib/site";
 
@@ -69,18 +69,25 @@ export function ClientMarquee() {
 export function FounderPreview() {
   return (
     <section className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-24 sm:px-6 lg:grid-cols-2 lg:px-8">
-      <div className="relative mx-auto w-full max-w-md">
-        <div className="absolute -inset-3 rounded-lg border border-gold" aria-hidden />
-        <img
-          src={founderPortraitAsset.url}
-          alt="Portrait of Ulrich Archie-Bong, Founder, President and CEO of JointHeirs DigiWorks Agency"
-          width={1024}
-          height={1280}
-          loading="lazy"
-          decoding="async"
-          className="relative w-full rounded-md object-cover shadow-[var(--shadow-luxe)]"
-        />
-      </div>
+      <figure className="mx-auto w-full max-w-md">
+        <div className="relative bg-[radial-gradient(55%_45%_at_50%_38%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_72%)]">
+          <img
+            src={founderPortraitCutout}
+            alt="Portrait of Ulrich Archie-Bong, Founder, President and CEO of JointHeirs DigiWorks Agency"
+            width={850}
+            height={1280}
+            loading="lazy"
+            decoding="async"
+            className="w-full object-contain [mask-image:linear-gradient(180deg,#000_86%,transparent)] drop-shadow-[0_24px_50px_rgba(0,0,0,0.45)] dark:drop-shadow-[0_24px_50px_rgba(0,0,0,0.75)]"
+          />
+        </div>
+        <figcaption className="mt-5 text-center">
+          <p className="font-display text-base uppercase">Ulrich Archie-Bong</p>
+          <p className="mt-2 font-display text-[10px] tracking-[0.22em] text-gold uppercase">
+            Founder, President &amp; Chief Executive Officer
+          </p>
+        </figcaption>
+      </figure>
       <div>
         <SectionHeading
           eyebrow="Founder & Leadership"

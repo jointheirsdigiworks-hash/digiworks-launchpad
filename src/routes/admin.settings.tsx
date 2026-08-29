@@ -100,6 +100,156 @@ function EffectsPanel() {
   );
 }
 
+type FounderDraft = {
+  title: string;
+  intro: string;
+  name: string;
+  role: string;
+  story: string;
+  quote: string;
+  portrait_url: string;
+  portrait_alt: string;
+  socials: string;
+};
+
+const emptyFounder: FounderDraft = {
+  title: "",
+  intro: "",
+  name: "",
+  role: "",
+  story: "",
+  quote: "",
+  portrait_url: "",
+  portrait_alt: "",
+  socials: "",
+};
+
+/** Founder bio, role, portrait and social links. */
+function FounderPanel() {
+  const queryClient = useQueryClient();
+  const listSettings = useServerFn(adminListSettings);
+  const saveSetting = useServerFn(adminSaveSetting);
+  const [draft, setDraft] = useState<FounderDraft | null>(null);
+
+  const query = useQuery({ queryKey: ["admin", "site_settings"], queryFn: () => listSettings({}) });
+
+  useEffect(() => {
+    if (!query.data || draft) return;
+    const stored = (query.data.settings.find((setting) => setting.key === "founder")?.value ?? {}) as {
+      title?: string;
+      intro?: string;
+      name?: string;
+      role?: string;
+      story?: string[];
+      quote?: string;
+      portrait_url?: string;
+      portrait_alt?: string;
+      socials?: { label?: string; url?: string }[];
+    };
+    setDraft({
+      ...emptyFounder,
+      title: stored.title ?? "",
+      intro: stored.intro ?? "",
+      name: stored.name ?? "",
+      role: stored.role ?? "",
+      story: (stored.story ?? []).join("\n\n"),
+      quote: stored.quote ?? "",
+      portrait_url: stored.portrait_url ?? "",
+      portrait_alt: stored.portrait_alt ?? "",
+      socials: (stored.socials ?? [])
+        .map((social) => `${social.label ?? ""} | ${social.url ?? ""}`)
+        .join("\n"),
+    });
+  }, [query.data, draft]);
+
+  const mutation = useMutation({
+    mutationFn: async (value: FounderDraft) =>
+      saveSetting({
+        data: {
+          key: "founder",
+          value: {
+            title: value.title.trim(),
+            intro: value.intro.trim(),
+            name: value.name.trim(),
+            role: value.role.trim(),
+            story: value.story
+              .split(/\n{2,}/)
+              .map((paragraph) => paragraph.trim())
+              .filter(Boolean),
+            quote: value.quote.trim(),
+            portrait_url: value.portrait_url.trim(),
+            portrait_alt: value.portrait_alt.trim(),
+            socials: value.socials
+              .split("\n")
+              .map((line) => {
+                const [label, url] = line.split("|");
+                return { label: (label ?? "").trim(), url: (url ?? "").trim() };
+              })
+              .filter((social) => social.label && social.url),
+          },
+        },
+      }),
+    onSuccess: () => {
+      toast.success("Founder details saved");
+      void queryClient.invalidateQueries({ queryKey: ["admin", "site_settings"] });
+    },
+    onError: (error: Error) => toast.error(error.message || "Could not save founder details"),
+  });
+
+  const fields = [
+    { key: "title", label: "Page title", rows: 1 },
+    { key: "intro", label: "Page intro", rows: 2 },
+    { key: "name", label: "Founder name", rows: 1 },
+    { key: "role", label: "Designation / role", rows: 1 },
+    { key: "story", label: "Bio / story (blank line between paragraphs)", rows: 10 },
+    { key: "quote", label: "Pull quote", rows: 3 },
+    { key: "portrait_url", label: "Portrait image URL (leave blank for the built-in portrait)", rows: 2 },
+    { key: "portrait_alt", label: "Portrait alt text", rows: 2 },
+    { key: "socials", label: "Social links — one per line as: Label | https://…", rows: 5 },
+  ] as const;
+
+  return (
+    <section className="space-y-4">
+      <h2 className="font-display text-[12px] tracking-[0.22em] uppercase">Founder &amp; leadership</h2>
+      <p className="text-sm text-muted-foreground">
+        These fields power the Founder page heading, portrait caption, bio and social links. Upload a portrait in the
+        Media Library, then paste its URL below.
+      </p>
+      <div className="luxe-card space-y-5 p-6">
+        {draft?.portrait_url ? (
+          <img
+            src={draft.portrait_url}
+            alt="Current founder portrait preview"
+            className="h-40 w-auto rounded-md border border-gold-soft object-contain"
+          />
+        ) : null}
+        {fields.map((field) => (
+          <div key={field.key}>
+            <label htmlFor={`founder-${field.key}`} className="font-display text-[11px] tracking-[0.2em] uppercase">
+              {field.label}
+            </label>
+            <textarea
+              id={`founder-${field.key}`}
+              rows={field.rows}
+              value={draft?.[field.key] ?? ""}
+              onChange={(event) => setDraft({ ...(draft ?? emptyFounder), [field.key]: event.target.value })}
+              className="mt-2 w-full rounded-md border border-input bg-background/60 px-4 py-3 text-sm outline-none focus:border-gold"
+            />
+          </div>
+        ))}
+        <button
+          type="button"
+          disabled={!draft || mutation.isPending}
+          onClick={() => draft && mutation.mutate(draft)}
+          className="rounded-full bg-gold px-5 py-2 font-display text-[11px] tracking-[0.16em] text-ink uppercase disabled:opacity-60"
+        >
+          Save founder details
+        </button>
+      </div>
+    </section>
+  );
+}
+
 /** Editable order confirmation / download email templates. */
 function EmailTemplatesPanel() {
   const queryClient = useQueryClient();
@@ -267,7 +417,10 @@ export const Route = createFileRoute("/admin/settings")({
       title="Site Settings"
       description="Edit global content blocks (founder story, contact details, robots) and strategy session availability."
     >
-      <EffectsPanel />
+      <FounderPanel />
+      <div className="mt-14">
+        <EffectsPanel />
+      </div>
       <div className="mt-14">
         <SettingsEditor />
       </div>

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import founderPortraitAsset from "@/assets/founder-ulrich.jpg.asset.json";
+import founderPortraitCutout from "@/assets/founder-ulrich-cutout.png";
 import { PageShell } from "@/components/PageShell";
 import { getFounderPage } from "@/lib/content.functions";
 import { site } from "@/lib/site";
@@ -31,12 +31,17 @@ export const Route = createFileRoute("/founder")({
 function Founder() {
   const { founder, team } = Route.useLoaderData();
   const founderName = founder.name ?? site.founder;
+  const founderRole = founder.role ?? "Founder, President & Chief Executive Officer";
+  const founderPortrait = founder.portrait_url?.trim() ? founder.portrait_url : founderPortraitCutout;
+  const socials = (founder.socials ?? []).filter((social) => social?.url?.trim() && social?.label?.trim());
 
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
     name: founderName,
-    jobTitle: founder.role ?? "Founder, President & Chief Executive Officer",
+    jobTitle: founderRole,
+    image: founderPortrait,
+    sameAs: socials.map((social) => social.url),
     worksFor: { "@type": "Organization", name: site.name },
     address: { "@type": "PostalAddress", addressLocality: "Ikeja, Lagos", addressCountry: "NG" },
   };
@@ -45,21 +50,43 @@ function Founder() {
     <PageShell
       eyebrow="Leadership"
       title={founder.title ?? "Leadership With Vision"}
-      intro={`${founderName} — ${founder.role ?? "Founder, President & Chief Executive Officer"}.`}
+      intro={founder.intro ?? "The people, principles and philosophy behind JointHeirs DigiWorks Agency."}
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
 
       <div className="mt-12 grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="relative mx-auto w-full max-w-sm">
-          <div className="absolute -inset-3 rounded-lg border border-gold" aria-hidden />
-          <img
-            src={founderPortraitAsset.url}
-            alt={`Portrait of ${founderName}, Founder, President and CEO of ${site.name}`}
-            width={719}
-            height={1080}
-            className="relative w-full rounded-md object-cover shadow-[var(--shadow-luxe)]"
-          />
-        </div>
+        <figure className="mx-auto w-full max-w-sm">
+          <div className="relative bg-[radial-gradient(55%_45%_at_50%_38%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_72%)]">
+            <img
+              src={founderPortrait}
+              alt={founder.portrait_alt ?? `Portrait of ${founderName}, ${founderRole} of ${site.name}`}
+              width={850}
+              height={1280}
+              className="relative w-full object-contain [mask-image:linear-gradient(180deg,#000_86%,transparent)] drop-shadow-[0_24px_50px_rgba(0,0,0,0.45)] dark:drop-shadow-[0_24px_50px_rgba(0,0,0,0.75)]"
+            />
+          </div>
+          <figcaption className="mt-6 text-center">
+            <h2 className="text-xl uppercase">{founderName}</h2>
+            <p className="mt-2 font-display text-[11px] tracking-[0.22em] text-gold uppercase">{founderRole}</p>
+            <div className="gold-rule mx-auto mt-4 max-w-[120px]" />
+            {socials.length > 0 && (
+              <ul className="mt-5 flex flex-wrap justify-center gap-4">
+                {socials.map((social) => (
+                  <li key={social.url}>
+                    <a
+                      href={social.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-display text-[10px] tracking-[0.2em] text-gold uppercase hover:underline"
+                    >
+                      {social.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </figcaption>
+        </figure>
         <div>
           <div className="space-y-5 leading-relaxed text-muted-foreground">
             {(founder.story ?? []).map((paragraph, index) => (

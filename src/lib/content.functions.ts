@@ -138,10 +138,14 @@ export const getFounderPage = createServerFn({ method: "GET" }).handler(async ()
   return {
     founder: (settings.data?.value ?? {}) as {
       title?: string;
+      intro?: string;
       name?: string;
       role?: string;
       story?: string[];
       quote?: string;
+      portrait_url?: string;
+      portrait_alt?: string;
+      socials?: { label?: string; url?: string }[];
     },
     team: team.data ?? [],
   };
