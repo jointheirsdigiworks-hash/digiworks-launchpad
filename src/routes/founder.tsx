@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import founderPortrait from "@/assets/founder-portrait.jpg";
+import founderPortraitAsset from "@/assets/founder-ulrich.jpg.asset.json";
 import { PageShell } from "@/components/PageShell";
 import { getFounderPage } from "@/lib/content.functions";
 import { site } from "@/lib/site";
@@ -53,10 +53,10 @@ function Founder() {
         <div className="relative mx-auto w-full max-w-sm">
           <div className="absolute -inset-3 rounded-lg border border-gold" aria-hidden />
           <img
-            src={founderPortrait}
+            src={founderPortraitAsset.url}
             alt={`Portrait of ${founderName}, Founder, President and CEO of ${site.name}`}
-            width={1024}
-            height={1280}
+            width={719}
+            height={1080}
             className="relative w-full rounded-md object-cover shadow-[var(--shadow-luxe)]"
           />
         </div>
