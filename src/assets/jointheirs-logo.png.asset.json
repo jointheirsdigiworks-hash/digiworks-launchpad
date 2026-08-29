@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "asset_id": "da2298d0-5cf4-4202-8aa8-f9c249266c5b",
+  "asset_id": "2de5e469-0490-48c5-8fd7-186239f63c61",
   "project_id": "96000b05-69c1-4a13-92d7-43309e7b6c58",
-  "url": "/__l5e/assets-v1/da2298d0-5cf4-4202-8aa8-f9c249266c5b/jointheirs-logo-v3.png",
-  "r2_key": "a/v1/96000b05-69c1-4a13-92d7-43309e7b6c58/da2298d0-5cf4-4202-8aa8-f9c249266c5b/jointheirs-logo-v3.png",
-  "original_filename": "jointheirs-logo-v3.png",
-  "size": 168281,
+  "url": "/__l5e/assets-v1/2de5e469-0490-48c5-8fd7-186239f63c61/jointheirs-logo-original.png",
+  "r2_key": "a/v1/96000b05-69c1-4a13-92d7-43309e7b6c58/2de5e469-0490-48c5-8fd7-186239f63c61/jointheirs-logo-original.png",
+  "original_filename": "jointheirs-logo-original.png",
+  "size": 125725,
   "content_type": "image/png",
-  "created_at": "2026-08-29T13:14:01Z"
+  "created_at": "2026-08-29T13:41:05Z"
 }
