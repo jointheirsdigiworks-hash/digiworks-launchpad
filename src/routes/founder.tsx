@@ -56,13 +56,13 @@ function Founder() {
 
       <div className="mt-12 grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr]">
         <figure className="mx-auto w-full max-w-sm">
-          <div className="relative bg-[radial-gradient(55%_45%_at_50%_38%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_72%)]">
+          <div className="relative overflow-hidden rounded-lg border border-gold-soft shadow-[var(--shadow-luxe)]">
             <img
               src={founderPortrait}
               alt={founder.portrait_alt ?? `Portrait of ${founderName}, ${founderRole} of ${site.name}`}
               width={850}
               height={1280}
-              className="relative w-full object-contain [mask-image:linear-gradient(180deg,#000_86%,transparent)] drop-shadow-[0_24px_50px_rgba(0,0,0,0.45)] dark:drop-shadow-[0_24px_50px_rgba(0,0,0,0.75)]"
+              className="w-full object-cover"
             />
           </div>
           <figcaption className="mt-6 text-center">
