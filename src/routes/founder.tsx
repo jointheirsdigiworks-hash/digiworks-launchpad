@@ -56,7 +56,7 @@ function Founder() {
 
       <div className="mt-12 grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr]">
         <figure className="mx-auto w-full max-w-sm">
-          <div className="relative overflow-hidden rounded-lg border border-gold-soft bg-[radial-gradient(120%_90%_at_50%_0%,color-mix(in_oklab,var(--gold)_18%,transparent),transparent_70%),linear-gradient(180deg,color-mix(in_oklab,var(--foreground)_8%,transparent),transparent)]">
+          <div className="relative bg-[radial-gradient(55%_45%_at_50%_38%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_72%)]">
             <img
               src={founderPortrait}
               alt={founder.portrait_alt ?? `Portrait of ${founderName}, ${founderRole} of ${site.name}`}

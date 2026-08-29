@@ -70,7 +70,7 @@ export function FounderPreview() {
   return (
     <section className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-24 sm:px-6 lg:grid-cols-2 lg:px-8">
       <figure className="mx-auto w-full max-w-md">
-        <div className="overflow-hidden rounded-lg border border-gold-soft bg-[radial-gradient(120%_90%_at_50%_0%,color-mix(in_oklab,var(--gold)_18%,transparent),transparent_70%),linear-gradient(180deg,color-mix(in_oklab,var(--foreground)_8%,transparent),transparent)]">
+        <div className="relative bg-[radial-gradient(55%_45%_at_50%_38%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_72%)]">
           <img
             src={founderPortraitCutout}
             alt="Portrait of Ulrich Archie-Bong, Founder, President and CEO of JointHeirs DigiWorks Agency"
