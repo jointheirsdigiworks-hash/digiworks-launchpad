@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
-import logo from "@/assets/jointheirs-logo.png.asset.json";
+import logo from "@/assets/jointheirs-logo-transparent.png";
 import { services, site, whatsappHref } from "@/lib/site";
 
 const companyLinks = [
@@ -17,7 +17,7 @@ export function Footer() {
     <footer className="border-t border-border bg-surface/60">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-4 lg:px-8">
         <div>
-          <img src={logo.url} alt="JointHeirs DigiWorks Agency logo" className="h-10 w-auto" loading="lazy" />
+          <img src={logo} alt="JointHeirs DigiWorks Agency logo" className="h-10 w-auto dark:brightness-0 dark:invert" loading="lazy" />
           <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
             {site.name} is an {site.tagline.toLowerCase()} building premium websites, brands and AI
             automation systems for ambitious businesses in Nigeria and beyond.
