@@ -13,7 +13,7 @@ import {
   Target,
 } from "lucide-react";
 import { useState } from "react";
-import founderPortrait from "@/assets/founder-portrait.jpg";
+import founderPortraitAsset from "@/assets/founder-ulrich.jpg.asset.json";
 import { supabase } from "@/integrations/supabase/client";
 import { services } from "@/lib/site";
 
@@ -72,7 +72,7 @@ export function FounderPreview() {
       <div className="relative mx-auto w-full max-w-md">
         <div className="absolute -inset-3 rounded-lg border border-gold" aria-hidden />
         <img
-          src={founderPortrait}
+          src={founderPortraitAsset.url}
           alt="Portrait of Ulrich Archie-Bong, Founder, President and CEO of JointHeirs DigiWorks Agency"
           width={1024}
           height={1280}
