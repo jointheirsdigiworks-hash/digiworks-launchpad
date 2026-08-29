@@ -186,15 +186,51 @@
   background-image: var(--gradient-gold);
 }
 
+@keyframes card-gold-glow {
+  0%,
+  100% {
+    border-color: rgb(201 169 110 / 45%);
+    box-shadow:
+      0 0 0 1px rgb(201 169 110 / 18%),
+      0 0 12px -2px rgb(201 169 110 / 25%);
+  }
+  50% {
+    border-color: rgb(226 202 155 / 95%);
+    box-shadow:
+      0 0 0 1px rgb(226 202 155 / 55%),
+      0 0 22px -2px rgb(201 169 110 / 55%);
+  }
+}
+
+/* Deep plum / wine information card with an animated thin champagne-gold glow. */
 @utility luxe-card {
-  background-color: var(--surface);
-  border: 1px solid var(--border);
+  background-color: #3a2231;
+  background-image: linear-gradient(150deg, #4a2c3e 0%, #331d2b 100%);
+  color: #f3ece4;
+  border: 1px solid rgb(201 169 110 / 45%);
   border-radius: var(--radius-lg);
-  transition: all var(--transition-luxe);
+  transition:
+    transform var(--transition-luxe),
+    box-shadow var(--transition-luxe);
+  animation: card-gold-glow 3.4s ease-in-out infinite;
   &:hover {
-    border-color: var(--gold-soft);
-    box-shadow: var(--shadow-gold);
     transform: translateY(-4px);
+    box-shadow: var(--shadow-gold);
+  }
+  & .text-muted-foreground,
+  & p,
+  & li,
+  & span {
+    color: inherit;
+  }
+  & .text-muted-foreground {
+    color: rgb(243 236 228 / 72%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .luxe-card {
+    animation: none;
   }
 }
 
