@@ -31,12 +31,17 @@ export const Route = createFileRoute("/founder")({
 function Founder() {
   const { founder, team } = Route.useLoaderData();
   const founderName = founder.name ?? site.founder;
+  const founderRole = founder.role ?? "Founder, President & Chief Executive Officer";
+  const founderPortrait = founder.portrait_url?.trim() ? founder.portrait_url : founderPortraitCutout;
+  const socials = (founder.socials ?? []).filter((social) => social?.url?.trim() && social?.label?.trim());
 
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
     name: founderName,
-    jobTitle: founder.role ?? "Founder, President & Chief Executive Officer",
+    jobTitle: founderRole,
+    image: founderPortrait,
+    sameAs: socials.map((social) => social.url),
     worksFor: { "@type": "Organization", name: site.name },
     address: { "@type": "PostalAddress", addressLocality: "Ikeja, Lagos", addressCountry: "NG" },
   };
@@ -45,7 +50,7 @@ function Founder() {
     <PageShell
       eyebrow="Leadership"
       title={founder.title ?? "Leadership With Vision"}
-      intro={`${founderName} — ${founder.role ?? "Founder, President & Chief Executive Officer"}.`}
+      intro={founder.intro ?? "The people, principles and philosophy behind JointHeirs DigiWorks Agency."}
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
 
