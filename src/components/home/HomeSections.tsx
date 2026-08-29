@@ -70,7 +70,7 @@ export function FounderPreview() {
   return (
     <section className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-24 sm:px-6 lg:grid-cols-2 lg:px-8">
       <figure className="mx-auto w-full max-w-md">
-        <div className="relative bg-[radial-gradient(55%_45%_at_50%_38%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_72%)]">
+        <div className="relative overflow-hidden rounded-lg border border-gold-soft shadow-[var(--shadow-luxe)]">
           <img
             src={founderPortraitAsset.url}
             alt="Portrait of Ulrich Archie-Bong, Founder, President and CEO of JointHeirs DigiWorks Agency"
@@ -78,7 +78,7 @@ export function FounderPreview() {
             height={1280}
             loading="lazy"
             decoding="async"
-            className="w-full object-contain [mask-image:linear-gradient(180deg,#000_86%,transparent)] drop-shadow-[0_24px_50px_rgba(0,0,0,0.45)] dark:drop-shadow-[0_24px_50px_rgba(0,0,0,0.75)]"
+            className="w-full object-cover"
           />
         </div>
         <figcaption className="mt-5 text-center">
