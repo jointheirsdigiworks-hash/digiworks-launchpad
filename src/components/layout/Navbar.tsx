@@ -44,14 +44,7 @@ export function Navbar() {
         className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8"
       >
         <Link to="/" className="flex shrink-0 items-center" aria-label={`${"JointHeirs DigiWorks Agency"} home`}>
-          <img
-            src={logo}
-            alt="JointHeirs DigiWorks Agency logo"
-            width={1366}
-            height={455}
-            className={`w-auto transition-all duration-700 ease-out ${scrolled ? "h-9" : "h-11"} dark:invert`}
-            style={{ transitionProperty: "height, filter, opacity" }}
-          />
+          <BrandLogo className={`transition-all duration-700 ease-out ${scrolled ? "h-9" : "h-11"}`} />
         </Link>
 
         <ul className="hidden items-center gap-6 xl:flex">
