@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
-import logo from "@/assets/jointheirs-logo-transparent.png";
+import { BrandLogo } from "@/components/BrandLogo";
 import { services, site, whatsappHref } from "@/lib/site";
 
 const companyLinks = [
