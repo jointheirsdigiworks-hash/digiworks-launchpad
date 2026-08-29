@@ -50,16 +50,38 @@ function Founder() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
 
       <div className="mt-12 grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="relative mx-auto w-full max-w-sm">
-          <div className="absolute -inset-3 rounded-lg border border-gold" aria-hidden />
-          <img
-            src={founderPortraitAsset.url}
-            alt={`Portrait of ${founderName}, Founder, President and CEO of ${site.name}`}
-            width={719}
-            height={1080}
-            className="relative w-full rounded-md object-cover shadow-[var(--shadow-luxe)]"
-          />
-        </div>
+        <figure className="mx-auto w-full max-w-sm">
+          <div className="relative overflow-hidden rounded-lg border border-gold-soft bg-[radial-gradient(120%_90%_at_50%_0%,color-mix(in_oklab,var(--gold)_18%,transparent),transparent_70%),linear-gradient(180deg,color-mix(in_oklab,var(--foreground)_8%,transparent),transparent)]">
+            <img
+              src={founderPortrait}
+              alt={founder.portrait_alt ?? `Portrait of ${founderName}, ${founderRole} of ${site.name}`}
+              width={850}
+              height={1280}
+              className="relative w-full object-contain drop-shadow-[0_24px_50px_rgba(0,0,0,0.45)] dark:drop-shadow-[0_24px_50px_rgba(0,0,0,0.75)]"
+            />
+          </div>
+          <figcaption className="mt-6 text-center">
+            <h2 className="text-xl uppercase">{founderName}</h2>
+            <p className="mt-2 font-display text-[11px] tracking-[0.22em] text-gold uppercase">{founderRole}</p>
+            <div className="gold-rule mx-auto mt-4 max-w-[120px]" />
+            {socials.length > 0 && (
+              <ul className="mt-5 flex flex-wrap justify-center gap-4">
+                {socials.map((social) => (
+                  <li key={social.url}>
+                    <a
+                      href={social.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-display text-[10px] tracking-[0.2em] text-gold uppercase hover:underline"
+                    >
+                      {social.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </figcaption>
+        </figure>
         <div>
           <div className="space-y-5 leading-relaxed text-muted-foreground">
             {(founder.story ?? []).map((paragraph, index) => (
