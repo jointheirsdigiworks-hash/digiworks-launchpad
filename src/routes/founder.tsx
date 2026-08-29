@@ -62,7 +62,7 @@ function Founder() {
               alt={founder.portrait_alt ?? `Portrait of ${founderName}, ${founderRole} of ${site.name}`}
               width={850}
               height={1280}
-              className="relative w-full object-contain drop-shadow-[0_24px_50px_rgba(0,0,0,0.45)] dark:drop-shadow-[0_24px_50px_rgba(0,0,0,0.75)]"
+              className="relative w-full object-contain [mask-image:linear-gradient(180deg,#000_86%,transparent)] drop-shadow-[0_24px_50px_rgba(0,0,0,0.45)] dark:drop-shadow-[0_24px_50px_rgba(0,0,0,0.75)]"
             />
           </div>
           <figcaption className="mt-6 text-center">

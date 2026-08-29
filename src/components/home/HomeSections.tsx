@@ -78,7 +78,7 @@ export function FounderPreview() {
             height={1280}
             loading="lazy"
             decoding="async"
-            className="w-full object-contain drop-shadow-[0_24px_50px_rgba(0,0,0,0.45)] dark:drop-shadow-[0_24px_50px_rgba(0,0,0,0.75)]"
+            className="w-full object-contain [mask-image:linear-gradient(180deg,#000_86%,transparent)] drop-shadow-[0_24px_50px_rgba(0,0,0,0.45)] dark:drop-shadow-[0_24px_50px_rgba(0,0,0,0.75)]"
           />
         </div>
         <figcaption className="mt-5 text-center">
