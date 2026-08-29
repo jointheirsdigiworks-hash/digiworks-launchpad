@@ -49,7 +49,8 @@ export function Navbar() {
             alt="JointHeirs DigiWorks Agency logo"
             width={1366}
             height={455}
-            className={`w-auto transition-all duration-500 ${scrolled ? "h-9" : "h-11"} dark:brightness-0 dark:invert`}
+            className={`w-auto transition-all duration-700 ease-out ${scrolled ? "h-9" : "h-11"} dark:invert`}
+            style={{ transitionProperty: "height, filter, opacity" }}
           />
         </Link>
 
@@ -101,7 +102,7 @@ export function Navbar() {
         }`}
       >
         <div className="flex items-center justify-between px-4 py-5">
-          <img src={logo} alt="JointHeirs DigiWorks Agency logo" className="h-9 w-auto dark:brightness-0 dark:invert" />
+          <img src={logo} alt="JointHeirs DigiWorks Agency logo" className="h-9 w-auto transition-[filter] duration-700 ease-out dark:invert" />
           <button
             type="button"
             onClick={() => setOpen(false)}

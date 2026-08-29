@@ -132,7 +132,7 @@ export function JDBot() {
         onClick={() => setOpen((value) => !value)}
         aria-label={open ? "Close JDBot assistant" : "Open JDBot assistant"}
         aria-expanded={open}
-        className="animate-gold-pulse fixed right-5 bottom-5 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-gold text-ink shadow-[var(--shadow-luxe)] transition-transform duration-300 hover:-translate-y-1"
+        className="animate-gold-pulse fixed right-5 bottom-24 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-gold text-ink shadow-[var(--shadow-luxe)] transition-transform duration-300 hover:-translate-y-1"
       >
         {open ? <X className="h-6 w-6" /> : <Bot className="h-6 w-6" />}
       </button>
@@ -140,7 +140,7 @@ export function JDBot() {
       {open && (
         <section
           aria-label="JDBot assistant"
-          className="fixed right-3 bottom-24 z-50 flex max-h-[75vh] w-[min(24rem,calc(100vw-1.5rem))] flex-col overflow-hidden rounded-2xl border border-gold-soft bg-background shadow-[var(--shadow-luxe)]"
+          className="fixed right-3 bottom-44 z-50 flex max-h-[70vh] w-[min(24rem,calc(100vw-1.5rem))] flex-col overflow-hidden rounded-2xl border border-gold-soft bg-background shadow-[var(--shadow-luxe)]"
         >
           <header className="flex items-center gap-3 border-b border-border bg-surface/70 px-5 py-4">
             <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-gold text-ink">
