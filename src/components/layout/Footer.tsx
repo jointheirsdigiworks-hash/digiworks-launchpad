@@ -14,7 +14,7 @@ const companyLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-[oklch(0.75_0.13_88_/_25%)] bg-[linear-gradient(160deg,#1e3a5f_0%,#131c2c_55%,#111111_100%)] text-[#F1EFEA] transition-colors duration-300">
+    <footer className="border-t border-[oklch(0.75_0.13_88_/_25%)] bg-[#111111] text-[#F1EFEA] transition-colors duration-300">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-4 lg:px-8">
         <div>
           <BrandLogo className="h-10" />
