@@ -92,7 +92,9 @@ export function FounderPreview() {
         <SectionHeading
           eyebrow="Founder & Leadership"
           title="Your Growth Partner in the Age of AI"
-          copy="Placeholder founder bio: a short paragraph about Ulrich Archie-Bong, Founder, President & CEO, and the philosophy behind JointHeirs DigiWorks Agency — combining premium design craft with practical AI systems that grow businesses."
+          copy={`About Ulrich Archie-Bong
+
+Ulrich Archie-Bong, Founder, President & CEO of JointHeirs DigiWorks Agency, is an entrepreneur, creative strategist, and AI-powered digital solutions professional passionate about helping businesses turn ideas into compelling brands, practical digital solutions, and measurable growth. His philosophy is simple: technology should serve people, creativity should solve real problems, and AI should create meaningful business advantage—not unnecessary complexity. Through JointHeirs DigiWorks Agency, Ulrich combines premium design craft with practical AI systems, automation, and digital strategy to help businesses build stronger brands, work smarter, and grow with confidence.`}
         />
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
