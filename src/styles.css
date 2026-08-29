@@ -217,12 +217,6 @@
     transform: translateY(-4px);
     box-shadow: var(--shadow-gold);
   }
-  & .text-muted-foreground,
-  & p,
-  & li,
-  & span {
-    color: inherit;
-  }
   & .text-muted-foreground {
     color: rgb(243 236 228 / 72%);
   }
