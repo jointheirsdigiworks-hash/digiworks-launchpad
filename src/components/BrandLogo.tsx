@@ -16,8 +16,8 @@ export function BrandLogo({ className = "h-10", alt = "JointHeirs DigiWorks Agen
       <img
         src={logoLightAsset.url}
         alt={alt}
-        width={1024}
-        height={1024}
+        width={404}
+        height={124}
         className="h-full w-auto object-contain transition-opacity duration-700 ease-out opacity-100 dark:opacity-0"
         loading="lazy"
       />
@@ -25,8 +25,8 @@ export function BrandLogo({ className = "h-10", alt = "JointHeirs DigiWorks Agen
         src={logoDarkAsset.url}
         alt=""
         aria-hidden
-        width={1024}
-        height={1024}
+        width={404}
+        height={124}
         className="absolute inset-0 h-full w-auto object-contain transition-opacity duration-700 ease-out opacity-0 dark:opacity-100"
         loading="lazy"
       />
