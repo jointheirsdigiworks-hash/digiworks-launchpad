@@ -246,10 +246,29 @@ export function AutomationShowcase() {
 /* -------------------------- Portfolio highlights -------------------------- */
 
 const caseStudies = [
-  { slug: "case-study-one", title: "Case Study One", sector: "Placeholder Sector", result: "Placeholder result metric" },
-  { slug: "case-study-two", title: "Case Study Two", sector: "Placeholder Sector", result: "Placeholder result metric" },
-  { slug: "case-study-three", title: "Case Study Three", sector: "Placeholder Sector", result: "Placeholder result metric" },
+  {
+    slug: "case-study-one",
+    title: "Lead Engine for a Property Firm",
+    sector: "Real Estate",
+    result: "Qualified enquiries up 3.4x in one quarter",
+    summary: "A rebuilt, fast, intent-driven website that qualifies buyers before your sales team ever picks up the phone.",
+  },
+  {
+    slug: "case-study-two",
+    title: "Automated Freight Enquiries",
+    sector: "Logistics",
+    result: "40 admin hours saved every month",
+    summary: "One intake pipeline with AI-drafted quotations and automatic follow-up, replacing spreadsheets and re-typing.",
+  },
+  {
+    slug: "case-study-four",
+    title: "Meta Ads That Fill Chairs",
+    sector: "Healthcare",
+    result: "4.3x return on ad spend",
+    summary: "Tracking rebuilt end to end, a dedicated booking page and creative tested on real patient concerns.",
+  },
 ];
+
 
 export function PortfolioHighlights() {
   return (
