@@ -284,9 +284,11 @@ export function PortfolioHighlights() {
           >
             <p className="font-display text-[11px] tracking-[0.24em] text-gold uppercase">{study.sector}</p>
             <h3 className="mt-4 text-2xl uppercase">{study.title}</h3>
-            <div className="mt-6 max-h-0 overflow-hidden text-sm text-muted-foreground opacity-0 transition-all duration-500 group-hover:max-h-24 group-hover:opacity-100">
-              {study.result}. Placeholder project summary describing scope, approach and outcome.
+            <p className="mt-3 text-sm text-gold-soft">{study.result}</p>
+            <div className="mt-4 max-h-0 overflow-hidden text-sm text-muted-foreground opacity-0 transition-all duration-500 group-hover:max-h-32 group-hover:opacity-100">
+              {study.summary}
             </div>
+
             <span className="mt-6 inline-flex items-center gap-2 font-display text-[11px] tracking-[0.2em] uppercase">
               View Case Study <ArrowRight className="h-3.5 w-3.5" />
             </span>
