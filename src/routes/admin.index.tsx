@@ -166,6 +166,17 @@ function AdminLogin() {
             {loading ? "Signing in…" : "Sign In"}
           </button>
         </form>
+        <button
+          type="button"
+          onClick={sendReset}
+          disabled={resetting}
+          className="mt-5 font-display text-[11px] tracking-[0.16em] text-gold uppercase underline-offset-4 hover:underline disabled:opacity-60"
+        >
+          {resetting ? "Sending reset link…" : "Forgot your password?"}
+        </button>
+        <p className="mt-2 text-xs text-muted-foreground">
+          Enter your staff email above and we will email a secure link to set a new password.
+        </p>
       </div>
     </main>
   );

@@ -18,6 +18,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FounderRouteImport } from './routes/founder'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as QuoteRouteImport } from './routes/quote'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
@@ -88,6 +89,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const QuoteRoute = QuoteRouteImport.update({
   id: '/quote',
   path: '/quote',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -231,6 +237,7 @@ export interface FileRoutesByFullPath {
   '/founder': typeof FounderRoute
   '/privacy': typeof PrivacyRoute
   '/quote': typeof QuoteRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
@@ -268,6 +275,7 @@ export interface FileRoutesByTo {
   '/founder': typeof FounderRoute
   '/privacy': typeof PrivacyRoute
   '/quote': typeof QuoteRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
@@ -306,6 +314,7 @@ export interface FileRoutesById {
   '/founder': typeof FounderRoute
   '/privacy': typeof PrivacyRoute
   '/quote': typeof QuoteRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
@@ -345,6 +354,7 @@ export interface FileRouteTypes {
     | '/founder'
     | '/privacy'
     | '/quote'
+    | '/reset-password'
     | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
@@ -382,6 +392,7 @@ export interface FileRouteTypes {
     | '/founder'
     | '/privacy'
     | '/quote'
+    | '/reset-password'
     | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
@@ -419,6 +430,7 @@ export interface FileRouteTypes {
     | '/founder'
     | '/privacy'
     | '/quote'
+    | '/reset-password'
     | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
@@ -457,6 +469,7 @@ export interface RootRouteChildren {
   FounderRoute: typeof FounderRoute
   PrivacyRoute: typeof PrivacyRoute
   QuoteRoute: typeof QuoteRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
@@ -548,6 +561,13 @@ declare module '@tanstack/react-router' {
       path: '/quote'
       fullPath: '/quote'
       preLoaderRoute: typeof QuoteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -745,6 +765,7 @@ const rootRouteChildren: RootRouteChildren = {
   FounderRoute: FounderRoute,
   PrivacyRoute: PrivacyRoute,
   QuoteRoute: QuoteRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
