@@ -251,7 +251,8 @@ export function ResourceManager({
             <div className="flex flex-wrap gap-3 pt-2">
               <button
                 type="submit"
-                disabled={saveMutation.isPending}
+                disabled={saveMutation.isPending || !canEdit}
+                title={canEdit ? undefined : "Your access level is read-only"}
                 className="rounded-full bg-gold px-6 py-3 font-display text-[12px] tracking-[0.18em] text-ink uppercase disabled:opacity-60"
               >
                 {saveMutation.isPending ? "Saving…" : "Save"}
