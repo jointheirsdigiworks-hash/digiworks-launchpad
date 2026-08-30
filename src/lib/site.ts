@@ -43,6 +43,7 @@ export const navLinks = [
   { to: "/services", label: "Services" },
   { to: "/portfolio", label: "Portfolio" },
   { to: "/insights", label: "Insights" },
+  { to: "/books", label: "Books" },
   { to: "/shop", label: "Shop" },
   { to: "/founder", label: "Founder" },
   { to: "/contact", label: "Contact" },
