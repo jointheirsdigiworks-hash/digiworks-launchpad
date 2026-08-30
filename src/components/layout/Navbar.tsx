@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { Lock, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { BrandLogo } from "@/components/BrandLogo";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -144,6 +144,13 @@ export function Navbar() {
               className="rounded-full border border-gold-soft px-6 py-3 text-center font-display text-sm tracking-[0.16em] uppercase text-foreground"
             >
               Book a Strategy Session
+            </Link>
+            <Link
+              to="/admin"
+              onClick={() => setOpen(false)}
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-gold-soft px-6 py-3 text-center font-display text-xs tracking-[0.16em] uppercase text-muted-foreground transition-colors hover:text-gold"
+            >
+              <Lock className="h-3.5 w-3.5" aria-hidden /> Admin Login
             </Link>
           </div>
         </div>

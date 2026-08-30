@@ -143,19 +143,20 @@ export function ResourceManager({
   }
 
   const rows = query.data?.rows ?? [];
+  const canEdit = query.data?.canEdit !== false;
 
   return (
     <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
       <section>
         <div className="flex items-center justify-between">
           <h2 className="font-display text-[12px] tracking-[0.22em] uppercase">Records ({rows.length})</h2>
-          <button
+          {canEdit && <button
             type="button"
             onClick={() => startEdit(null)}
             className="inline-flex items-center gap-2 rounded-full bg-gold px-4 py-2 font-display text-[11px] tracking-[0.16em] text-ink uppercase"
           >
             <Plus className="h-3.5 w-3.5" aria-hidden /> New
-          </button>
+          </button>}
         </div>
 
         <ul className="mt-5 space-y-3">
@@ -169,7 +170,7 @@ export function ResourceManager({
                   <p className="mt-1 text-xs text-muted-foreground">{String(row[subtitleField] ?? "")}</p>
                 )}
               </button>
-              <button
+              {canEdit && <button
                 type="button"
                 aria-label="Delete record"
                 onClick={() => {
@@ -178,7 +179,7 @@ export function ResourceManager({
                 className="text-muted-foreground transition hover:text-destructive"
               >
                 <Trash2 className="h-4 w-4" aria-hidden />
-              </button>
+              </button>}
             </li>
           ))}
         </ul>
