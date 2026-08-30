@@ -91,6 +91,24 @@ function AdminLogin() {
     setSessionEmail(null);
   }
 
+  async function sendReset() {
+    const parsed = z.string().trim().email().safeParse(email);
+    if (!parsed.success) {
+      toast.error("Enter your staff email address first");
+      return;
+    }
+    setResetting(true);
+    const { error } = await supabase.auth.resetPasswordForEmail(parsed.data, {
+      redirectTo: `${window.location.origin}/reset-password`,
+    });
+    setResetting(false);
+    if (error) {
+      toast.error("Could not send the reset link. Try again shortly.");
+      return;
+    }
+    toast.success("If that email has staff access, a password reset link is on its way.");
+  }
+
   if (sessionEmail) {
     return (
       <main className="mx-auto max-w-3xl px-4 pt-32 pb-24 sm:px-6">
