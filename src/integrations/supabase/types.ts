@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      activity_log: {
+        Row: {
+          action: string
+          actor_email: string
+          actor_id: string | null
+          created_at: string
+          details: Json
+          id: string
+          record_id: string | null
+          resource: string
+          summary: string
+        }
+        Insert: {
+          action: string
+          actor_email?: string
+          actor_id?: string | null
+          created_at?: string
+          details?: Json
+          id?: string
+          record_id?: string | null
+          resource: string
+          summary?: string
+        }
+        Update: {
+          action?: string
+          actor_email?: string
+          actor_id?: string | null
+          created_at?: string
+          details?: Json
+          id?: string
+          record_id?: string | null
+          resource?: string
+          summary?: string
+        }
+        Relationships: []
+      }
       availability_slots: {
         Row: {
           active: boolean
@@ -831,7 +867,7 @@ export type Database = {
       }
     }
     Enums: {
-      app_role: "admin" | "editor"
+      app_role: "admin" | "editor" | "viewer"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -959,7 +995,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "editor"],
+      app_role: ["admin", "editor", "viewer"],
     },
   },
 } as const
