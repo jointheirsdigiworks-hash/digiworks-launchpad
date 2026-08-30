@@ -3,6 +3,7 @@ import { KeyRound } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
+import { PasswordInput } from "@/components/forms/PasswordInput";
 import { supabase } from "@/integrations/supabase/client";
 
 const schema = z
@@ -81,26 +82,22 @@ function ResetPassword() {
                 <label htmlFor="new-password" className="font-display text-[11px] tracking-[0.2em] uppercase">
                   New password
                 </label>
-                <input
+                <PasswordInput
                   id="new-password"
-                  type="password"
                   autoComplete="new-password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="mt-2 w-full rounded-md border border-input bg-background/60 px-4 py-3 text-sm outline-none focus:border-gold"
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                 />
               </div>
               <div>
                 <label htmlFor="confirm-password" className="font-display text-[11px] tracking-[0.2em] uppercase">
                   Confirm password
                 </label>
-                <input
+                <PasswordInput
                   id="confirm-password"
-                  type="password"
                   autoComplete="new-password"
                   value={confirm}
-                  onChange={(e) => setConfirm(e.target.value)}
-                  className="mt-2 w-full rounded-md border border-input bg-background/60 px-4 py-3 text-sm outline-none focus:border-gold"
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setConfirm(e.target.value)}
                 />
               </div>
               <button
