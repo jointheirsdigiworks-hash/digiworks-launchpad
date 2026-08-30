@@ -94,7 +94,7 @@ function Founder() {
             ))}
           </div>
           {founder.quote && (
-            <blockquote className="luxe-card mt-8 p-7">
+            <blockquote className="luxe-card mt-8 p-6">
               <p className="text-lg italic">“{founder.quote}”</p>
               <footer className="mt-4 font-display text-[11px] tracking-[0.22em] text-gold uppercase">
                 {founderName}

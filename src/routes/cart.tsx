@@ -43,7 +43,7 @@ function Cart() {
         <>
           <ul className="mt-10 space-y-4">
             {items.map((item) => (
-              <li key={item.slug} className="luxe-card flex flex-wrap items-center gap-4 p-5">
+              <li key={item.slug} className="luxe-card flex flex-wrap items-center gap-4 p-4">
                 {item.coverImageUrl ? (
                   <img
                     src={item.coverImageUrl}

@@ -57,7 +57,7 @@ function ThankYou() {
           That order could not be found. Please check the link or contact us and we'll help right away.
         </p>
       ) : (
-        <div className="luxe-card mt-10 p-7">
+        <div className="luxe-card mt-8 p-6">
           <p className="text-xs tracking-[0.18em] text-muted-foreground uppercase">Reference {order.reference}</p>
           <h2 className="mt-4 text-2xl uppercase">{order.title}</h2>
           <p className="mt-2 text-sm text-muted-foreground">

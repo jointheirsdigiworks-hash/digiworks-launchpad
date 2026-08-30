@@ -106,7 +106,7 @@ function AdminLogin() {
         {isAdmin && (
           <div className="mt-9 grid gap-4 sm:grid-cols-2">
             {sections.map((section) => (
-              <Link key={section.to} to={section.to} className="luxe-card p-7">
+              <Link key={section.to} to={section.to} className="luxe-card p-6">
                 <p className="font-display text-[12px] tracking-[0.2em] text-gold uppercase">{section.label}</p>
                 <p className="mt-3 text-sm text-muted-foreground">{section.description}</p>
               </Link>
@@ -125,7 +125,7 @@ function AdminLogin() {
 
   return (
     <main className="mx-auto flex min-h-screen max-w-md flex-col justify-center px-4 pt-28 pb-16">
-      <div className="luxe-card p-8">
+      <div className="luxe-card p-6">
         <Lock className="h-6 w-6 text-gold" aria-hidden />
         <h1 className="mt-5 text-2xl uppercase">Admin Login</h1>
         <p className="mt-3 text-sm text-muted-foreground">

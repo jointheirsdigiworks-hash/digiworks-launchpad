@@ -70,7 +70,7 @@ function SubmissionList({ table }: { table: Table }) {
         const lines = config.summary(row);
         const created = row["created_at"] ? new Date(String(row["created_at"])).toLocaleString("en-NG") : "";
         return (
-          <article key={id} className="luxe-card p-6">
+          <article key={id} className="luxe-card p-5">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <p className="text-sm uppercase">{lines[0]}</p>
               <p className="text-xs tracking-[0.16em] text-muted-foreground uppercase">{created}</p>

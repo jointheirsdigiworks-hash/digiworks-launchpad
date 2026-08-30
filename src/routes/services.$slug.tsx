@@ -123,7 +123,7 @@ function ServiceDetail() {
           <h2 className="text-2xl uppercase">What's Included</h2>
           <ul className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((feature) => (
-              <li key={feature} className="luxe-card flex items-start gap-3 p-5 text-sm">
+              <li key={feature} className="luxe-card flex items-start gap-3 p-4 text-sm">
                 <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" aria-hidden />
                 <span>{feature}</span>
               </li>
@@ -137,7 +137,7 @@ function ServiceDetail() {
           <h2 className="text-2xl uppercase">Our Process</h2>
           <ol className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {process.map((step, index) => (
-              <li key={`${step.title}-${index}`} className="luxe-card p-6">
+              <li key={`${step.title}-${index}`} className="luxe-card p-5">
                 <span className="font-display text-3xl text-gold-soft">{String(index + 1).padStart(2, "0")}</span>
                 <h3 className="mt-3 text-base uppercase">{step.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{step.detail}</p>
@@ -152,7 +152,7 @@ function ServiceDetail() {
           <h2 className="text-2xl uppercase">Frequently Asked</h2>
           <div className="mt-7 max-w-3xl space-y-4">
             {faqs.map((faq, index) => (
-              <details key={`${faq.q}-${index}`} className="luxe-card p-6">
+              <details key={`${faq.q}-${index}`} className="luxe-card p-5">
                 <summary className="cursor-pointer font-display text-sm tracking-[0.08em] uppercase">
                   {faq.q}
                 </summary>
@@ -172,7 +172,7 @@ function ServiceDetail() {
                 key={item.slug}
                 to="/services/$slug"
                 params={{ slug: item.slug }}
-                className="luxe-card p-6"
+                className="luxe-card p-5"
               >
                 <h3 className="text-base uppercase">{item.name}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{item.short_description}</p>

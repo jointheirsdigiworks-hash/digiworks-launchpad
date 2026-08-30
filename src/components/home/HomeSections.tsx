@@ -148,7 +148,7 @@ export function ServicesGrid() {
                 key={slug}
                 to="/services/$slug"
                 params={{ slug }}
-                className="luxe-card group flex flex-col p-7"
+                className="luxe-card group flex flex-col p-6"
               >
                 <Icon className="h-7 w-7 text-gold" aria-hidden />
                 <h3 className="mt-5 text-lg leading-snug uppercase">{service.name}</h3>
@@ -253,7 +253,7 @@ export function PortfolioHighlights() {
             key={study.slug}
             to="/portfolio/$slug"
             params={{ slug: study.slug }}
-            className="luxe-card group relative overflow-hidden p-8"
+            className="luxe-card group relative overflow-hidden p-6"
           >
             <p className="font-display text-[11px] tracking-[0.24em] text-gold uppercase">{study.sector}</p>
             <h3 className="mt-4 text-2xl uppercase">{study.title}</h3>
@@ -332,13 +332,13 @@ export function InsightsPreview() {
       <SectionHeading eyebrow="Insights" title="Latest From the Blog" />
       <div className="mt-12 grid gap-6 md:grid-cols-3">
         {isLoading &&
-          [0, 1, 2].map((n) => <div key={n} className="luxe-card h-48 animate-pulse p-8" />)}
+          [0, 1, 2].map((n) => <div key={n} className="luxe-card h-48 animate-pulse p-6" />)}
         {posts?.map((post) => (
           <Link
             key={post.id}
             to="/insights/$slug"
             params={{ slug: post.slug }}
-            className="luxe-card group flex flex-col p-8"
+            className="luxe-card group flex flex-col p-6"
           >
             {post.published_at && (
               <p className="font-display text-[11px] tracking-[0.24em] text-gold uppercase">

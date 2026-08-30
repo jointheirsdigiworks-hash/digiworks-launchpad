@@ -65,7 +65,7 @@ function Uploader() {
   }
 
   return (
-    <div className="luxe-card mb-8 p-7">
+    <div className="luxe-card mb-8 p-6">
       <h2 className="font-display text-[12px] tracking-[0.22em] uppercase">Upload media</h2>
       <p className="mt-3 text-sm text-muted-foreground">
         Upload images or video, then add alt text below. Files are stored privately and served through a signed URL.

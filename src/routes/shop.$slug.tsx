@@ -217,7 +217,7 @@ function ProductDetail() {
                 key={entry.slug}
                 to="/shop/$slug"
                 params={{ slug: entry.slug }}
-                className="luxe-card hover-glow p-6"
+                className="luxe-card hover-glow p-5"
               >
                 <h3 className="text-lg uppercase">{entry.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{entry.short_description}</p>

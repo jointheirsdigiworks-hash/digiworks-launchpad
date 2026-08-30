@@ -86,7 +86,7 @@ export function QuoteWizard({ presetService }: { presetService?: string }) {
 
   if (reference) {
     return (
-      <div className="luxe-card mt-10 max-w-2xl p-10">
+      <div className="luxe-card mt-8 max-w-xl p-7">
         <span className="flex h-12 w-12 items-center justify-center rounded-full bg-gold text-ink">
           <Check className="h-6 w-6" aria-hidden />
         </span>
@@ -101,7 +101,7 @@ export function QuoteWizard({ presetService }: { presetService?: string }) {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="luxe-card mt-10 max-w-2xl p-8">
+    <form onSubmit={onSubmit} noValidate className="luxe-card mt-8 max-w-xl p-6">
       <ol className="flex flex-wrap gap-3" aria-label="Quote request progress">
         {steps.map((label, index) => (
           <li

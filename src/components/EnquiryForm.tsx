@@ -51,7 +51,7 @@ export function EnquiryForm({ submitLabel = "Send Enquiry" }: { submitLabel?: st
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="luxe-card mt-10 max-w-2xl space-y-5 p-8">
+    <form onSubmit={onSubmit} noValidate className="luxe-card mt-8 max-w-xl space-y-5 p-6">
       {fields.map((field) => (
         <div key={field.name}>
           <label htmlFor={field.name} className="font-display text-[11px] tracking-[0.2em] uppercase">

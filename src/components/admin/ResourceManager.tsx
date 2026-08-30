@@ -162,7 +162,7 @@ export function ResourceManager({
           {query.isPending && <li className="text-sm text-muted-foreground">Loading…</li>}
           {!query.isPending && rows.length === 0 && <li className="text-sm text-muted-foreground">{emptyLabel}</li>}
           {rows.map((row) => (
-            <li key={String(row["id"])} className="luxe-card flex items-start justify-between gap-4 p-5">
+            <li key={String(row["id"])} className="luxe-card flex items-start justify-between gap-4 p-4">
               <button type="button" onClick={() => startEdit(row)} className="text-left">
                 <p className="text-sm uppercase">{String(row[titleField] ?? "Untitled")}</p>
                 {subtitleField && (
@@ -186,11 +186,11 @@ export function ResourceManager({
 
       <section>
         {!editing ? (
-          <p className="luxe-card p-7 text-sm text-muted-foreground">
+          <p className="luxe-card p-6 text-sm text-muted-foreground">
             Select a record to edit, or create a new one.
           </p>
         ) : (
-          <form onSubmit={submit} className="luxe-card space-y-4 p-7">
+          <form onSubmit={submit} className="luxe-card space-y-4 p-6">
             <h2 className="font-display text-[12px] tracking-[0.22em] uppercase">
               {typeof draft["id"] === "string" ? "Edit record" : "New record"}
             </h2>
