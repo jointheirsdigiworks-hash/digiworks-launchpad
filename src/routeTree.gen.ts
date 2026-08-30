@@ -18,10 +18,13 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FounderRouteImport } from './routes/founder'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as QuoteRouteImport } from './routes/quote'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminAccessRouteImport } from './routes/admin.access'
+import { Route as AdminActivityRouteImport } from './routes/admin.activity'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
 import { Route as AdminChatsRouteImport } from './routes/admin.chats'
 import { Route as AdminMediaRouteImport } from './routes/admin.media'
@@ -88,6 +91,11 @@ const QuoteRoute = QuoteRouteImport.update({
   path: '/quote',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -106,6 +114,16 @@ const ThankYouRoute = ThankYouRouteImport.update({
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/admin/',
   path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAccessRoute = AdminAccessRouteImport.update({
+  id: '/admin/access',
+  path: '/admin/access',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminActivityRoute = AdminActivityRouteImport.update({
+  id: '/admin/activity',
+  path: '/admin/activity',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminBlogRoute = AdminBlogRouteImport.update({
@@ -219,9 +237,12 @@ export interface FileRoutesByFullPath {
   '/founder': typeof FounderRoute
   '/privacy': typeof PrivacyRoute
   '/quote': typeof QuoteRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/admin/access': typeof AdminAccessRoute
+  '/admin/activity': typeof AdminActivityRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/chats': typeof AdminChatsRoute
   '/admin/media': typeof AdminMediaRoute
@@ -254,9 +275,12 @@ export interface FileRoutesByTo {
   '/founder': typeof FounderRoute
   '/privacy': typeof PrivacyRoute
   '/quote': typeof QuoteRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/admin/access': typeof AdminAccessRoute
+  '/admin/activity': typeof AdminActivityRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/chats': typeof AdminChatsRoute
   '/admin/media': typeof AdminMediaRoute
@@ -290,9 +314,12 @@ export interface FileRoutesById {
   '/founder': typeof FounderRoute
   '/privacy': typeof PrivacyRoute
   '/quote': typeof QuoteRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/admin/access': typeof AdminAccessRoute
+  '/admin/activity': typeof AdminActivityRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/chats': typeof AdminChatsRoute
   '/admin/media': typeof AdminMediaRoute
@@ -327,9 +354,12 @@ export interface FileRouteTypes {
     | '/founder'
     | '/privacy'
     | '/quote'
+    | '/reset-password'
     | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
+    | '/admin/access'
+    | '/admin/activity'
     | '/admin/blog'
     | '/admin/chats'
     | '/admin/media'
@@ -362,9 +392,12 @@ export interface FileRouteTypes {
     | '/founder'
     | '/privacy'
     | '/quote'
+    | '/reset-password'
     | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
+    | '/admin/access'
+    | '/admin/activity'
     | '/admin/blog'
     | '/admin/chats'
     | '/admin/media'
@@ -397,9 +430,12 @@ export interface FileRouteTypes {
     | '/founder'
     | '/privacy'
     | '/quote'
+    | '/reset-password'
     | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
+    | '/admin/access'
+    | '/admin/activity'
     | '/admin/blog'
     | '/admin/chats'
     | '/admin/media'
@@ -433,9 +469,12 @@ export interface RootRouteChildren {
   FounderRoute: typeof FounderRoute
   PrivacyRoute: typeof PrivacyRoute
   QuoteRoute: typeof QuoteRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
+  AdminAccessRoute: typeof AdminAccessRoute
+  AdminActivityRoute: typeof AdminActivityRoute
   AdminBlogRoute: typeof AdminBlogRoute
   AdminChatsRoute: typeof AdminChatsRoute
   AdminMediaRoute: typeof AdminMediaRoute
@@ -524,6 +563,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuoteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -550,6 +596,20 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/access': {
+      id: '/admin/access'
+      path: '/admin/access'
+      fullPath: '/admin/access'
+      preLoaderRoute: typeof AdminAccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/activity': {
+      id: '/admin/activity'
+      path: '/admin/activity'
+      fullPath: '/admin/activity'
+      preLoaderRoute: typeof AdminActivityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/blog': {
@@ -705,9 +765,12 @@ const rootRouteChildren: RootRouteChildren = {
   FounderRoute: FounderRoute,
   PrivacyRoute: PrivacyRoute,
   QuoteRoute: QuoteRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
+  AdminAccessRoute: AdminAccessRoute,
+  AdminActivityRoute: AdminActivityRoute,
   AdminBlogRoute: AdminBlogRoute,
   AdminChatsRoute: AdminChatsRoute,
   AdminMediaRoute: AdminMediaRoute,

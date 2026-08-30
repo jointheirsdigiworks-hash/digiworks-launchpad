@@ -18,6 +18,8 @@ const sections = [
   { to: "/admin/submissions", label: "Submissions", description: "Enquiries, quote requests and strategy session bookings." },
   { to: "/admin/media", label: "Media Library", description: "Upload imagery and video with alt text." },
   { to: "/admin/seo", label: "SEO", description: "Per-page meta titles, descriptions and share images." },
+  { to: "/admin/access", label: "Team Access", description: "Add team members with admin, editor or viewer access." },
+  { to: "/admin/activity", label: "Activity Log", description: "Audit trail of who changed what and when." },
   { to: "/admin/settings", label: "Site Settings", description: "Founder story, contact details and booking availability." },
 ] as const;
 
@@ -36,6 +38,7 @@ function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [resetting, setResetting] = useState(false);
   const [sessionEmail, setSessionEmail] = useState<string | null>(null);
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
 
@@ -89,6 +92,24 @@ function AdminLogin() {
     await supabase.auth.signOut();
     setIsAdmin(null);
     setSessionEmail(null);
+  }
+
+  async function sendReset() {
+    const parsed = z.string().trim().email().safeParse(email);
+    if (!parsed.success) {
+      toast.error("Enter your staff email address first");
+      return;
+    }
+    setResetting(true);
+    const { error } = await supabase.auth.resetPasswordForEmail(parsed.data, {
+      redirectTo: `${window.location.origin}/reset-password`,
+    });
+    setResetting(false);
+    if (error) {
+      toast.error("Could not send the reset link. Try again shortly.");
+      return;
+    }
+    toast.success("If that email has staff access, a password reset link is on its way.");
   }
 
   if (sessionEmail) {
@@ -166,6 +187,17 @@ function AdminLogin() {
             {loading ? "Signing in…" : "Sign In"}
           </button>
         </form>
+        <button
+          type="button"
+          onClick={sendReset}
+          disabled={resetting}
+          className="mt-5 font-display text-[11px] tracking-[0.16em] text-gold uppercase underline-offset-4 hover:underline disabled:opacity-60"
+        >
+          {resetting ? "Sending reset link…" : "Forgot your password?"}
+        </button>
+        <p className="mt-2 text-xs text-muted-foreground">
+          Enter your staff email above and we will email a secure link to set a new password.
+        </p>
       </div>
     </main>
   );
