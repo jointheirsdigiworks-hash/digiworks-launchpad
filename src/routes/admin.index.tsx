@@ -18,6 +18,8 @@ const sections = [
   { to: "/admin/submissions", label: "Submissions", description: "Enquiries, quote requests and strategy session bookings." },
   { to: "/admin/media", label: "Media Library", description: "Upload imagery and video with alt text." },
   { to: "/admin/seo", label: "SEO", description: "Per-page meta titles, descriptions and share images." },
+  { to: "/admin/access", label: "Team Access", description: "Add team members with admin, editor or viewer access." },
+  { to: "/admin/activity", label: "Activity Log", description: "Audit trail of who changed what and when." },
   { to: "/admin/settings", label: "Site Settings", description: "Founder story, contact details and booking availability." },
 ] as const;
 
