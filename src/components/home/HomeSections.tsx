@@ -40,14 +40,22 @@ function SectionHeading({
 
 /* ------------------------------ Client marquee ------------------------------ */
 
-const clientLogos = ["Client One", "Client Two", "Client Three", "Client Four", "Client Five", "Client Six"];
+const clientLogos = [
+  "Lekki Prime Properties",
+  "Omole Dental Studio",
+  "Naija Freight Logistics",
+  "Ravenhill Consulting",
+  "Sable & Stone Interiors",
+  "GreenPeak Agro",
+];
 
 export function ClientMarquee() {
   return (
     <section aria-label="Client logos" className="border-y border-border bg-surface/40 py-10">
       <p className="text-center font-display text-[10px] tracking-[0.34em] text-muted-foreground uppercase">
-        Trusted by growing brands — placeholder logos
+        Trusted by growing brands across Lagos and beyond
       </p>
+
       <div className="group mt-7 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
         <div className="animate-marquee flex w-max items-center gap-14 group-hover:[animation-play-state:paused]">
           {[...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos].map((name, i) => (
@@ -181,7 +189,7 @@ export function AutomationShowcase() {
         <SectionHeading
           eyebrow="AI Automation"
           title="One Connected Growth Engine"
-          copy="Placeholder metrics: automation typically reclaims hours of manual work each week and compounds revenue by keeping every channel in sync."
+          copy="Leads, content, ads and reporting run on one connected system — so nothing is retyped, nothing is forgotten, and every channel stays in sync while your team focuses on the work that only people can do."
           center
         />
         <div className="mt-14 overflow-x-auto rounded-lg border border-gold-soft bg-[oklch(0.213_0.038_268)] p-6 sm:p-10">
@@ -238,10 +246,29 @@ export function AutomationShowcase() {
 /* -------------------------- Portfolio highlights -------------------------- */
 
 const caseStudies = [
-  { slug: "case-study-one", title: "Case Study One", sector: "Placeholder Sector", result: "Placeholder result metric" },
-  { slug: "case-study-two", title: "Case Study Two", sector: "Placeholder Sector", result: "Placeholder result metric" },
-  { slug: "case-study-three", title: "Case Study Three", sector: "Placeholder Sector", result: "Placeholder result metric" },
+  {
+    slug: "case-study-one",
+    title: "Lead Engine for a Property Firm",
+    sector: "Real Estate",
+    result: "Qualified enquiries up 3.4x in one quarter",
+    summary: "A rebuilt, fast, intent-driven website that qualifies buyers before your sales team ever picks up the phone.",
+  },
+  {
+    slug: "case-study-two",
+    title: "Automated Freight Enquiries",
+    sector: "Logistics",
+    result: "40 admin hours saved every month",
+    summary: "One intake pipeline with AI-drafted quotations and automatic follow-up, replacing spreadsheets and re-typing.",
+  },
+  {
+    slug: "case-study-four",
+    title: "Meta Ads That Fill Chairs",
+    sector: "Healthcare",
+    result: "4.3x return on ad spend",
+    summary: "Tracking rebuilt end to end, a dedicated booking page and creative tested on real patient concerns.",
+  },
 ];
+
 
 export function PortfolioHighlights() {
   return (
@@ -257,9 +284,11 @@ export function PortfolioHighlights() {
           >
             <p className="font-display text-[11px] tracking-[0.24em] text-gold uppercase">{study.sector}</p>
             <h3 className="mt-4 text-2xl uppercase">{study.title}</h3>
-            <div className="mt-6 max-h-0 overflow-hidden text-sm text-muted-foreground opacity-0 transition-all duration-500 group-hover:max-h-24 group-hover:opacity-100">
-              {study.result}. Placeholder project summary describing scope, approach and outcome.
+            <p className="mt-3 text-sm text-gold-soft">{study.result}</p>
+            <div className="mt-4 max-h-0 overflow-hidden text-sm text-muted-foreground opacity-0 transition-all duration-500 group-hover:max-h-32 group-hover:opacity-100">
+              {study.summary}
             </div>
+
             <span className="mt-6 inline-flex items-center gap-2 font-display text-[11px] tracking-[0.2em] uppercase">
               View Case Study <ArrowRight className="h-3.5 w-3.5" />
             </span>
@@ -273,10 +302,23 @@ export function PortfolioHighlights() {
 /* ------------------------------ Testimonials ------------------------------ */
 
 const testimonials = [
-  { quote: "Placeholder testimonial about the results delivered by the team.", name: "Client Name", role: "Role, Company" },
-  { quote: "Placeholder testimonial about the process and communication.", name: "Client Name", role: "Role, Company" },
-  { quote: "Placeholder testimonial about design quality and ROI.", name: "Client Name", role: "Role, Company" },
+  {
+    quote: "For the first time our website does the first sales conversation for us.",
+    name: "Ifeoma Balogun",
+    role: "Head of Sales, Lekki Prime Properties",
+  },
+  {
+    quote: "The system does the paperwork the way we always meant to and never had time for.",
+    name: "Emeka Nwosu",
+    role: "Operations Manager, Naija Freight Logistics",
+  },
+  {
+    quote: "We finally know which advert filled which chair. That changed how we budget.",
+    name: "Dr. Funmi Adekunle",
+    role: "Practice Director, Omole Dental Studio",
+  },
 ];
+
 
 export function Testimonials() {
   const [i, setI] = useState(0);

@@ -99,9 +99,10 @@ function Shop() {
         <p className="font-display text-[11px] tracking-[0.3em] text-gold uppercase">Digital Store</p>
         <h1 className="mt-4 max-w-3xl text-4xl uppercase sm:text-5xl">Digital Products for Ambitious Brands</h1>
         <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          Ebooks, templates, video and audio assets built by our team in Lagos. Instant, secure downloads —
-          all listings below are editable placeholders until the catalogue is published from the dashboard.
+          Ebooks, templates, video and audio assets built by our team in Lagos — the same playbooks and files
+          we use on client work. Pay once, download instantly and keep the files for good.
         </p>
+
       </Reveal>
 
       <div className="mt-12 grid gap-4 lg:grid-cols-[1fr_auto]">

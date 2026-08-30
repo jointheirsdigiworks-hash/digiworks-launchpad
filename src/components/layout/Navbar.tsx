@@ -47,45 +47,36 @@ export function Navbar() {
           <BrandLogo className={`transition-all duration-700 ease-out ${scrolled ? "h-9" : "h-11"}`} />
         </Link>
 
-        <ul className="hidden items-center gap-6 xl:flex">
-          {navLinks.map((link) => (
-            <li key={link.to}>
-              <Link
-                to={link.to}
-                activeOptions={{ exact: link.to === "/" }}
-                activeProps={{ className: "text-gold" }}
-                className={`font-display text-[13px] tracking-[0.18em] uppercase transition-colors ${linkTone}`}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="flex flex-1 items-center justify-end gap-6">
+          <ul className="hidden items-center gap-6 xl:flex">
+            {navLinks.map((link) => (
+              <li key={link.to}>
+                <Link
+                  to={link.to}
+                  activeOptions={{ exact: link.to === "/" }}
+                  activeProps={{ className: "text-gold" }}
+                  className={`font-display text-[13px] tracking-[0.18em] uppercase transition-colors ${linkTone}`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-        <div className="flex items-center gap-2">
-          <ThemeToggle />
-          <Link
-            to="/quote"
-            className="hidden rounded-full bg-gold px-5 py-2.5 font-display text-[12px] tracking-[0.16em] uppercase text-ink shadow-[var(--shadow-gold)] transition-transform duration-300 hover:-translate-y-0.5 lg:inline-flex"
-          >
-            Get a Free Quote
-          </Link>
-          <Link
-            to="/book"
-            className={`hidden rounded-full border px-5 py-2.5 font-display text-[12px] tracking-[0.16em] uppercase transition-colors duration-300 xl:inline-flex ${ghostTone}`}
-          >
-            Book a Strategy Session
-          </Link>
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            aria-label="Open menu"
-            aria-expanded={open}
-            className={`inline-flex h-10 w-10 items-center justify-center rounded-full border xl:hidden ${ghostTone}`}
-          >
-            <Menu className="h-5 w-5" />
-          </button>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
+              aria-label="Open menu"
+              aria-expanded={open}
+              className={`inline-flex h-10 w-10 items-center justify-center rounded-full border xl:hidden ${ghostTone}`}
+            >
+              <Menu className="h-5 w-5" />
+            </button>
+          </div>
         </div>
+
       </nav>
 
       {/* Full-screen mobile overlay */}

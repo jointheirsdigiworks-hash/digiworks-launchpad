@@ -25,12 +25,3 @@ export function PageShell({
     </main>
   );
 }
-
-export function Placeholder({ label }: { label: string }) {
-  return (
-    <div className="luxe-card mt-8 border-dashed p-7 text-center">
-      <p className="font-display text-sm tracking-[0.2em] text-gold uppercase">Placeholder</p>
-      <p className="mt-3 text-sm text-muted-foreground">{label}</p>
-    </div>
-  );
-}
