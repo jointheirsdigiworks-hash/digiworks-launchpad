@@ -133,6 +133,7 @@ function Books() {
                           title: book.title,
                           price: Number(book.price),
                           currency: book.currency,
+                          coverImageUrl: book.cover_image_url ?? null,
                         });
                         toast.success(`${book.title} added to your cart`);
                       }}
