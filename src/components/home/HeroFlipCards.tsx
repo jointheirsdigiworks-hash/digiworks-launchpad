@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Lock } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { HeroParticles } from "@/components/effects/HeroParticles";
 import heroAds from "@/assets/hero-ads.jpg";
@@ -120,6 +120,14 @@ export function HeroFlipCards() {
           className="rounded-full border border-[oklch(0.75_0.13_88_/_55%)] bg-[oklch(0_0_0_/_35%)] px-4 py-2.5 font-display text-[10px] tracking-[0.16em] uppercase text-[oklch(0.968_0.005_247)] backdrop-blur-sm transition-colors duration-300 hover:border-[oklch(0.75_0.13_88)] hover:text-[oklch(0.75_0.13_88)] sm:px-5 sm:text-[12px]"
         >
           Book a Strategy Session
+        </Link>
+        <Link
+          to="/admin"
+          aria-label="Admin login"
+          title="Admin Login"
+          className="inline-flex items-center justify-center rounded-full border border-[oklch(0.968_0.005_247_/_25%)] bg-[oklch(0_0_0_/_35%)] p-2.5 text-[oklch(0.968_0.005_247_/_70%)] backdrop-blur-sm transition-colors duration-300 hover:border-[oklch(0.75_0.13_88)] hover:text-[oklch(0.75_0.13_88)]"
+        >
+          <Lock className="h-4 w-4" aria-hidden />
         </Link>
       </div>
       <div className="relative h-[86vh] min-h-[540px] w-full">

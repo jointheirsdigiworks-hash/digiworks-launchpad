@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Linkedin, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Lock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { BrandLogo } from "@/components/BrandLogo";
 import { services, site, whatsappHref } from "@/lib/site";
 
@@ -108,7 +108,16 @@ export function Footer() {
           <Link to="/founder" className="text-[oklch(0.84_0.11_88)] transition-colors hover:text-[#E8C9A0]">
             Design by {site.founder} - {site.name}
           </Link>
-          <p className="text-[#C9CFD9]">© 2026 {site.name}. All Rights Reserved.</p>
+          <div className="flex items-center gap-5">
+            <Link
+              to="/admin"
+              className="inline-flex items-center gap-1.5 text-[#C9CFD9] transition-colors hover:text-[oklch(0.86_0.11_88)]"
+            >
+              <Lock className="h-3 w-3" aria-hidden />
+              Admin Login
+            </Link>
+            <p className="text-[#C9CFD9]">© 2026 {site.name}. All Rights Reserved.</p>
+          </div>
         </div>
       </div>
     </footer>
