@@ -70,7 +70,7 @@ export function BookingForm() {
 
   if (reference) {
     return (
-      <div className="luxe-card mt-10 max-w-2xl p-7">
+      <div className="luxe-card mt-8 max-w-xl p-7">
         <span className="flex h-12 w-12 items-center justify-center rounded-full bg-gold text-ink">
           <Check className="h-6 w-6" aria-hidden />
         </span>
@@ -85,7 +85,7 @@ export function BookingForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="luxe-card mt-10 max-w-2xl space-y-5 p-6">
+    <form onSubmit={onSubmit} noValidate className="luxe-card mt-8 max-w-xl space-y-5 p-6">
       <Field id="b-name" label="Full name" required error={errors["name"]}>
         <input id="b-name" name="name" maxLength={100} autoComplete="name" className={inputClass} />
       </Field>

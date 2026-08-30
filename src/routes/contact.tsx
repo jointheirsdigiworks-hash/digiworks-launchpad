@@ -28,7 +28,7 @@ function Contact() {
     <PageShell eyebrow="Contact" title="Let's Talk" intro="Send an enquiry or reach us directly.">
       <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr]">
         <ContactForm />
-        <address className="luxe-card mt-10 h-fit space-y-4 p-6 text-sm not-italic text-muted-foreground">
+        <address className="luxe-card mt-8 h-fit space-y-4 p-6 text-sm not-italic text-muted-foreground">
           <p>{site.address}</p>
           {site.phones.map((phone) => (
             <p key={phone}>
