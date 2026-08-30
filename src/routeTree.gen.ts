@@ -22,6 +22,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminAccessRouteImport } from './routes/admin.access'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
 import { Route as AdminChatsRouteImport } from './routes/admin.chats'
 import { Route as AdminMediaRouteImport } from './routes/admin.media'
@@ -106,6 +107,11 @@ const ThankYouRoute = ThankYouRouteImport.update({
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/admin/',
   path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAccessRoute = AdminAccessRouteImport.update({
+  id: '/admin/access',
+  path: '/admin/access',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminBlogRoute = AdminBlogRouteImport.update({
@@ -222,6 +228,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/admin/access': typeof AdminAccessRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/chats': typeof AdminChatsRoute
   '/admin/media': typeof AdminMediaRoute
@@ -257,6 +264,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/admin/access': typeof AdminAccessRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/chats': typeof AdminChatsRoute
   '/admin/media': typeof AdminMediaRoute
@@ -293,6 +301,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/admin/access': typeof AdminAccessRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/chats': typeof AdminChatsRoute
   '/admin/media': typeof AdminMediaRoute
@@ -330,6 +339,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
+    | '/admin/access'
     | '/admin/blog'
     | '/admin/chats'
     | '/admin/media'
@@ -365,6 +375,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
+    | '/admin/access'
     | '/admin/blog'
     | '/admin/chats'
     | '/admin/media'
@@ -400,6 +411,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
+    | '/admin/access'
     | '/admin/blog'
     | '/admin/chats'
     | '/admin/media'
@@ -436,6 +448,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
+  AdminAccessRoute: typeof AdminAccessRoute
   AdminBlogRoute: typeof AdminBlogRoute
   AdminChatsRoute: typeof AdminChatsRoute
   AdminMediaRoute: typeof AdminMediaRoute
@@ -550,6 +563,13 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/access': {
+      id: '/admin/access'
+      path: '/admin/access'
+      fullPath: '/admin/access'
+      preLoaderRoute: typeof AdminAccessRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/blog': {
@@ -708,6 +728,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
+  AdminAccessRoute: AdminAccessRoute,
   AdminBlogRoute: AdminBlogRoute,
   AdminChatsRoute: AdminChatsRoute,
   AdminMediaRoute: AdminMediaRoute,
