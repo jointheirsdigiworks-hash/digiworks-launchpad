@@ -22,7 +22,8 @@ export const listProducts = createServerFn({ method: "GET" }).handler(async () =
     .select(PRODUCT_PUBLIC_COLUMNS)
     .eq("published", true)
     .order("sort_order");
-  return { products: data ?? [] };
+  const { resolveMediaFields } = await import("./media.server");
+  return { products: await resolveMediaFields(data ?? [], ["cover_image_url"]) };
 });
 
 export const getProductBySlug = createServerFn({ method: "GET" })
@@ -49,7 +50,14 @@ export const getProductBySlug = createServerFn({ method: "GET" })
       .limit(3);
     // never leak the private storage path to the browser
     const { external_url: _external, ...safe } = product as Record<string, unknown>;
-    return { product: { ...safe, has_external_link: Boolean(_external) }, related: related ?? [] };
+    const { resolveMediaFields } = await import("./media.server");
+    const [resolved] = await resolveMediaFields([{ ...safe, has_external_link: Boolean(_external) }], [
+      "cover_image_url",
+    ]);
+    return {
+      product: resolved ?? null,
+      related: await resolveMediaFields(related ?? [], ["cover_image_url"]),
+    };
   });
 
 export const getStoreSettings = createServerFn({ method: "GET" }).handler(async () => {
