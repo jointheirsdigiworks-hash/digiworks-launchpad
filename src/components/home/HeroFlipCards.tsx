@@ -107,7 +107,23 @@ export function HeroFlipCards() {
       }}
     >
       <HeroParticles />
+      {/* Primary CTAs live here (top right of the hero) rather than in the nav bar. */}
+      <div className="absolute top-20 right-4 z-20 flex flex-wrap justify-end gap-2 sm:top-24 sm:right-8 sm:gap-3 lg:right-10">
+        <Link
+          to="/quote"
+          className="rounded-full bg-gold px-4 py-2.5 font-display text-[10px] tracking-[0.16em] uppercase text-ink shadow-[var(--shadow-gold)] transition-transform duration-300 hover:-translate-y-0.5 sm:px-5 sm:text-[12px]"
+        >
+          Get a Free Quote
+        </Link>
+        <Link
+          to="/book"
+          className="rounded-full border border-[oklch(0.75_0.13_88_/_55%)] bg-[oklch(0_0_0_/_35%)] px-4 py-2.5 font-display text-[10px] tracking-[0.16em] uppercase text-[oklch(0.968_0.005_247)] backdrop-blur-sm transition-colors duration-300 hover:border-[oklch(0.75_0.13_88)] hover:text-[oklch(0.75_0.13_88)] sm:px-5 sm:text-[12px]"
+        >
+          Book a Strategy Session
+        </Link>
+      </div>
       <div className="relative h-[86vh] min-h-[540px] w-full">
+
         {cards.map((card, i) => {
           const active = i === index;
           return (
