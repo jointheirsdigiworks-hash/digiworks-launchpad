@@ -23,6 +23,7 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminAccessRouteImport } from './routes/admin.access'
+import { Route as AdminActivityRouteImport } from './routes/admin.activity'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
 import { Route as AdminChatsRouteImport } from './routes/admin.chats'
 import { Route as AdminMediaRouteImport } from './routes/admin.media'
@@ -112,6 +113,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
 const AdminAccessRoute = AdminAccessRouteImport.update({
   id: '/admin/access',
   path: '/admin/access',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminActivityRoute = AdminActivityRouteImport.update({
+  id: '/admin/activity',
+  path: '/admin/activity',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminBlogRoute = AdminBlogRouteImport.update({
@@ -229,6 +235,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/admin/access': typeof AdminAccessRoute
+  '/admin/activity': typeof AdminActivityRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/chats': typeof AdminChatsRoute
   '/admin/media': typeof AdminMediaRoute
@@ -265,6 +272,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/admin/access': typeof AdminAccessRoute
+  '/admin/activity': typeof AdminActivityRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/chats': typeof AdminChatsRoute
   '/admin/media': typeof AdminMediaRoute
@@ -302,6 +310,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/admin/access': typeof AdminAccessRoute
+  '/admin/activity': typeof AdminActivityRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/chats': typeof AdminChatsRoute
   '/admin/media': typeof AdminMediaRoute
@@ -340,6 +349,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/thank-you'
     | '/admin/access'
+    | '/admin/activity'
     | '/admin/blog'
     | '/admin/chats'
     | '/admin/media'
@@ -376,6 +386,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/thank-you'
     | '/admin/access'
+    | '/admin/activity'
     | '/admin/blog'
     | '/admin/chats'
     | '/admin/media'
@@ -412,6 +423,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/thank-you'
     | '/admin/access'
+    | '/admin/activity'
     | '/admin/blog'
     | '/admin/chats'
     | '/admin/media'
@@ -449,6 +461,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
   AdminAccessRoute: typeof AdminAccessRoute
+  AdminActivityRoute: typeof AdminActivityRoute
   AdminBlogRoute: typeof AdminBlogRoute
   AdminChatsRoute: typeof AdminChatsRoute
   AdminMediaRoute: typeof AdminMediaRoute
@@ -570,6 +583,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/access'
       fullPath: '/admin/access'
       preLoaderRoute: typeof AdminAccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/activity': {
+      id: '/admin/activity'
+      path: '/admin/activity'
+      fullPath: '/admin/activity'
+      preLoaderRoute: typeof AdminActivityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/blog': {
@@ -729,6 +749,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
   AdminAccessRoute: AdminAccessRoute,
+  AdminActivityRoute: AdminActivityRoute,
   AdminBlogRoute: AdminBlogRoute,
   AdminChatsRoute: AdminChatsRoute,
   AdminMediaRoute: AdminMediaRoute,
