@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Lock, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { BrandLogo } from "@/components/BrandLogo";
+import { SearchBox } from "@/components/SearchBox";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { navLinks, services } from "@/lib/site";
 
@@ -64,6 +65,7 @@ export function Navbar() {
           </ul>
 
           <div className="flex items-center gap-2">
+            <SearchBox tone={ghostTone} />
             <ThemeToggle />
             <button
               type="button"
@@ -98,6 +100,9 @@ export function Navbar() {
         </div>
 
         <div className="flex-1 overflow-y-auto px-6 pb-10">
+          <div className="mb-6">
+            <SearchBox tone="border-gold-soft text-foreground" onNavigate={() => setOpen(false)} />
+          </div>
           <ul className="space-y-1">
             {navLinks.map((link) => (
               <li key={link.to}>
