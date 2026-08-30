@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PageShell, Placeholder } from "@/components/PageShell";
+import { PageShell } from "@/components/PageShell";
 
 const title = "About Us | JointHeirs DigiWorks Agency";
 const description =
