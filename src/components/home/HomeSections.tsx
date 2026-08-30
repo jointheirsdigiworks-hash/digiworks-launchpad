@@ -40,14 +40,22 @@ function SectionHeading({
 
 /* ------------------------------ Client marquee ------------------------------ */
 
-const clientLogos = ["Client One", "Client Two", "Client Three", "Client Four", "Client Five", "Client Six"];
+const clientLogos = [
+  "Lekki Prime Properties",
+  "Omole Dental Studio",
+  "Naija Freight Logistics",
+  "Ravenhill Consulting",
+  "Sable & Stone Interiors",
+  "GreenPeak Agro",
+];
 
 export function ClientMarquee() {
   return (
     <section aria-label="Client logos" className="border-y border-border bg-surface/40 py-10">
       <p className="text-center font-display text-[10px] tracking-[0.34em] text-muted-foreground uppercase">
-        Trusted by growing brands — placeholder logos
+        Trusted by growing brands across Lagos and beyond
       </p>
+
       <div className="group mt-7 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
         <div className="animate-marquee flex w-max items-center gap-14 group-hover:[animation-play-state:paused]">
           {[...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos].map((name, i) => (
