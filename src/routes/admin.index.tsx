@@ -3,6 +3,7 @@ import { Lock } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
+import { PasswordInput } from "@/components/forms/PasswordInput";
 import { supabase } from "@/integrations/supabase/client";
 
 const credentials = z.object({
@@ -174,7 +175,7 @@ function AdminLogin() {
               id="admin-password"
               autoComplete="current-password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
             />
 
           </div>
