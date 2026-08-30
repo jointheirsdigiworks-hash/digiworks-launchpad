@@ -302,10 +302,23 @@ export function PortfolioHighlights() {
 /* ------------------------------ Testimonials ------------------------------ */
 
 const testimonials = [
-  { quote: "Placeholder testimonial about the results delivered by the team.", name: "Client Name", role: "Role, Company" },
-  { quote: "Placeholder testimonial about the process and communication.", name: "Client Name", role: "Role, Company" },
-  { quote: "Placeholder testimonial about design quality and ROI.", name: "Client Name", role: "Role, Company" },
+  {
+    quote: "For the first time our website does the first sales conversation for us.",
+    name: "Ifeoma Balogun",
+    role: "Head of Sales, Lekki Prime Properties",
+  },
+  {
+    quote: "The system does the paperwork the way we always meant to and never had time for.",
+    name: "Emeka Nwosu",
+    role: "Operations Manager, Naija Freight Logistics",
+  },
+  {
+    quote: "We finally know which advert filled which chair. That changed how we budget.",
+    name: "Dr. Funmi Adekunle",
+    role: "Practice Director, Omole Dental Studio",
+  },
 ];
+
 
 export function Testimonials() {
   const [i, setI] = useState(0);
