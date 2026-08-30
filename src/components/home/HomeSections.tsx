@@ -189,7 +189,7 @@ export function AutomationShowcase() {
         <SectionHeading
           eyebrow="AI Automation"
           title="One Connected Growth Engine"
-          copy="Placeholder metrics: automation typically reclaims hours of manual work each week and compounds revenue by keeping every channel in sync."
+          copy="Leads, content, ads and reporting run on one connected system — so nothing is retyped, nothing is forgotten, and every channel stays in sync while your team focuses on the work that only people can do."
           center
         />
         <div className="mt-14 overflow-x-auto rounded-lg border border-gold-soft bg-[oklch(0.213_0.038_268)] p-6 sm:p-10">
