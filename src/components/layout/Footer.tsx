@@ -8,6 +8,7 @@ const companyLinks = [
   { to: "/founder", label: "Founder" },
   { to: "/portfolio", label: "Portfolio" },
   { to: "/insights", label: "Insights" },
+  { to: "/books", label: "Books" },
   { to: "/shop", label: "Shop" },
   { to: "/contact", label: "Contact" },
 ] as const;
