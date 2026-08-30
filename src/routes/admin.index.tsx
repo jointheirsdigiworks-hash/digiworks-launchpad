@@ -170,14 +170,13 @@ function AdminLogin() {
             <label htmlFor="admin-password" className="font-display text-[11px] tracking-[0.2em] uppercase">
               Password
             </label>
-            <input
+            <PasswordInput
               id="admin-password"
-              type="password"
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-2 w-full rounded-md border border-input bg-background/60 px-4 py-3 text-sm outline-none focus:border-gold"
             />
+
           </div>
           <button
             type="submit"
