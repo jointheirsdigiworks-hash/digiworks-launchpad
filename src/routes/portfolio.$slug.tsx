@@ -81,7 +81,7 @@ function CaseStudyDetail() {
         <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
           <div className="grid gap-5 sm:grid-cols-3">
             {results.map((result, index) => (
-              <div key={`${result.label}-${index}`} className="luxe-card p-7 text-center">
+              <div key={`${result.label}-${index}`} className="luxe-card p-6 text-center">
                 <p className="font-display text-3xl text-gold">{result.value}</p>
                 <p className="mt-2 text-xs tracking-[0.18em] text-muted-foreground uppercase">{result.label}</p>
               </div>
@@ -120,7 +120,7 @@ function CaseStudyDetail() {
 
       {study.testimonial_quote && (
         <section className="mx-auto max-w-3xl px-4 pb-14 sm:px-6">
-          <blockquote className="luxe-card p-9">
+          <blockquote className="luxe-card p-7">
             <p className="text-lg italic">“{study.testimonial_quote}”</p>
             {study.testimonial_author && (
               <footer className="mt-5 font-display text-[11px] tracking-[0.22em] text-gold uppercase">

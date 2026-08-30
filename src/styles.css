@@ -96,9 +96,9 @@
 
   --gradient-hero: linear-gradient(
     100deg,
-    rgb(15 26 44 / 92%) 0%,
-    rgb(30 58 95 / 72%) 45%,
-    rgb(15 26 44 / 25%) 100%
+    rgb(0 0 0 / 88%) 0%,
+    rgb(10 10 10 / 68%) 45%,
+    rgb(0 0 0 / 22%) 100%
   );
   --gradient-gold: linear-gradient(120deg, var(--gold), #e2ca9b, var(--ember));
   --shadow-luxe: 0 24px 60px -24px rgb(0 0 0 / 70%);
@@ -138,9 +138,9 @@
 
   --gradient-hero: linear-gradient(
     100deg,
-    rgb(34 34 34 / 82%) 0%,
-    rgb(30 58 95 / 55%) 50%,
-    rgb(34 34 34 / 15%) 100%
+    rgb(0 0 0 / 82%) 0%,
+    rgb(10 10 10 / 55%) 50%,
+    rgb(0 0 0 / 15%) 100%
   );
   --shadow-luxe: 0 20px 50px -26px rgb(34 34 34 / 30%);
   --shadow-gold: 0 0 0 1px var(--gold-soft), 0 16px 44px -24px rgb(176 143 79 / 45%);
@@ -202,10 +202,10 @@
   }
 }
 
-/* Deep plum / wine information card with an animated thin champagne-gold glow. */
+/* Deep navy / matte black information card with an animated thin champagne-gold glow. */
 @utility luxe-card {
-  background-color: #3a2231;
-  background-image: linear-gradient(150deg, #4a2c3e 0%, #331d2b 100%);
+  background-color: #0a192f;
+  background-image: linear-gradient(150deg, #0a192f 0%, #111111 100%);
   color: #f3ece4;
   border: 1px solid rgb(201 169 110 / 45%);
   border-radius: var(--radius-lg);

@@ -58,7 +58,7 @@ export function ContactForm({ submitLabel = "Send Enquiry" }: { submitLabel?: st
 
   if (done) {
     return (
-      <div className="luxe-card mt-10 max-w-2xl p-10">
+      <div className="luxe-card mt-10 max-w-2xl p-7">
         <p className="font-display text-[11px] tracking-[0.28em] text-gold uppercase">Received</p>
         <h2 className="mt-4 text-2xl uppercase">Thank you</h2>
         <p className="mt-4 text-sm text-muted-foreground">
@@ -75,7 +75,7 @@ export function ContactForm({ submitLabel = "Send Enquiry" }: { submitLabel?: st
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="luxe-card mt-10 max-w-2xl space-y-5 p-8">
+    <form onSubmit={onSubmit} noValidate className="luxe-card mt-10 max-w-2xl space-y-5 p-6">
       <Field id="name" label="Full name" required error={errors["name"]}>
         <input id="name" name="name" maxLength={100} autoComplete="name" className={inputClass} />
       </Field>

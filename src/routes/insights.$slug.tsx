@@ -98,7 +98,7 @@ function PostDetail() {
           <div className="mt-10">
             <VideoPlayer {...videoSettings} />
             {post.video_transcript && (
-              <details className="luxe-card mt-4 p-5 text-sm">
+              <details className="luxe-card mt-4 p-4 text-sm">
                 <summary className="cursor-pointer font-display text-[11px] tracking-[0.2em] uppercase">
                   Video transcript
                 </summary>

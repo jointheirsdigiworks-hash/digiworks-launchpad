@@ -61,7 +61,7 @@ function ChatSessions() {
         const id = row.id ?? row.session_key ?? "";
         const expanded = openId === id;
         return (
-          <article key={id} className="luxe-card p-6">
+          <article key={id} className="luxe-card p-5">
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div>
                 <p className="font-display text-[12px] tracking-[0.18em] uppercase">

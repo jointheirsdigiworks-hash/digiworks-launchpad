@@ -74,7 +74,7 @@ function EffectsPanel() {
         Turn individual interaction effects on or off across the whole site. Effects are always skipped for visitors who
         request reduced motion.
       </p>
-      <div className="luxe-card grid gap-4 p-6 sm:grid-cols-2">
+      <div className="luxe-card grid gap-4 p-5 sm:grid-cols-2">
         {effectKeys.map((effect) => (
           <label key={effect.key} htmlFor={`effect-${effect.key}`} className="flex items-center gap-3 text-sm">
             <input
@@ -215,7 +215,7 @@ function FounderPanel() {
         These fields power the Founder page heading, portrait caption, bio and social links. Upload a portrait in the
         Media Library, then paste its URL below.
       </p>
-      <div className="luxe-card space-y-5 p-6">
+      <div className="luxe-card space-y-5 p-5">
         {draft?.portrait_url ? (
           <img
             src={draft.portrait_url}
@@ -284,7 +284,7 @@ function EmailTemplatesPanel() {
         Placeholders you can use: {"{{name}}"}, {"{{product}}"}, {"{{reference}}"}, {"{{amount}}"},{" "}
         {"{{download_url}}"}, {"{{expires}}"}, {"{{limit}}"}.
       </p>
-      <div className="luxe-card space-y-5 p-6">
+      <div className="luxe-card space-y-5 p-5">
         {templateFields.map((field) => (
           <div key={field.key}>
             <label htmlFor={`tpl-${field.key}`} className="font-display text-[11px] tracking-[0.2em] uppercase">
@@ -354,7 +354,7 @@ function SettingsEditor() {
       <h2 className="font-display text-[12px] tracking-[0.22em] uppercase">Site settings</h2>
       {query.isPending && <p className="text-sm text-muted-foreground">Loading…</p>}
       {Object.keys(drafts).map((key) => (
-        <div key={key} className="luxe-card p-6">
+        <div key={key} className="luxe-card p-5">
           <label htmlFor={`setting-${key}`} className="font-display text-[11px] tracking-[0.2em] uppercase">
             {key}
           </label>
@@ -375,7 +375,7 @@ function SettingsEditor() {
         </div>
       ))}
 
-      <div className="luxe-card p-6">
+      <div className="luxe-card p-5">
         <label htmlFor="new-setting" className="font-display text-[11px] tracking-[0.2em] uppercase">
           Add a new setting key
         </label>

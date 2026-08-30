@@ -65,7 +65,7 @@ function Checkout() {
       ) : (
         <div className="mt-12 grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <form
-            className="luxe-card p-7"
+            className="luxe-card p-6"
             onSubmit={(event) => {
               event.preventDefault();
               if (name.trim().length < 2) {
@@ -132,7 +132,7 @@ function Checkout() {
             </button>
           </form>
 
-          <aside className="luxe-card h-fit p-7">
+          <aside className="luxe-card h-fit p-6">
             <h2 className="font-display text-[12px] tracking-[0.22em] uppercase">Order summary</h2>
             <ul className="mt-6 space-y-3">
               {items.map((item) => (
