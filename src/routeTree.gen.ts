@@ -31,6 +31,7 @@ import { Route as AdminBlogRouteImport } from './routes/admin.blog'
 import { Route as AdminChatsRouteImport } from './routes/admin.chats'
 import { Route as AdminMediaRouteImport } from './routes/admin.media'
 import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
+import { Route as AdminPagesRouteImport } from './routes/admin.pages'
 import { Route as AdminPortfolioRouteImport } from './routes/admin.portfolio'
 import { Route as AdminProductsRouteImport } from './routes/admin.products'
 import { Route as AdminSeoRouteImport } from './routes/admin.seo'
@@ -40,6 +41,7 @@ import { Route as AdminSubmissionsRouteImport } from './routes/admin.submissions
 import { Route as AdminTeamRouteImport } from './routes/admin.team'
 import { Route as InsightsIndexRouteImport } from './routes/insights.index'
 import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
+import { Route as PagesSlugRouteImport } from './routes/pages.$slug'
 import { Route as PortfolioIndexRouteImport } from './routes/portfolio.index'
 import { Route as PortfolioSlugRouteImport } from './routes/portfolio.$slug'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
@@ -158,6 +160,11 @@ const AdminOrdersRoute = AdminOrdersRouteImport.update({
   path: '/admin/orders',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminPagesRoute = AdminPagesRouteImport.update({
+  id: '/admin/pages',
+  path: '/admin/pages',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminPortfolioRoute = AdminPortfolioRouteImport.update({
   id: '/admin/portfolio',
   path: '/admin/portfolio',
@@ -201,6 +208,11 @@ const InsightsIndexRoute = InsightsIndexRouteImport.update({
 const InsightsSlugRoute = InsightsSlugRouteImport.update({
   id: '/insights/$slug',
   path: '/insights/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagesSlugRoute = PagesSlugRouteImport.update({
+  id: '/pages/$slug',
+  path: '/pages/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PortfolioIndexRoute = PortfolioIndexRouteImport.update({
@@ -261,6 +273,7 @@ export interface FileRoutesByFullPath {
   '/admin/chats': typeof AdminChatsRoute
   '/admin/media': typeof AdminMediaRoute
   '/admin/orders': typeof AdminOrdersRoute
+  '/admin/pages': typeof AdminPagesRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
   '/admin/products': typeof AdminProductsRoute
   '/admin/seo': typeof AdminSeoRoute
@@ -269,6 +282,7 @@ export interface FileRoutesByFullPath {
   '/admin/submissions': typeof AdminSubmissionsRoute
   '/admin/team': typeof AdminTeamRoute
   '/insights/$slug': typeof InsightsSlugRoute
+  '/pages/$slug': typeof PagesSlugRoute
   '/portfolio/$slug': typeof PortfolioSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/shop/$slug': typeof ShopSlugRoute
@@ -301,6 +315,7 @@ export interface FileRoutesByTo {
   '/admin/chats': typeof AdminChatsRoute
   '/admin/media': typeof AdminMediaRoute
   '/admin/orders': typeof AdminOrdersRoute
+  '/admin/pages': typeof AdminPagesRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
   '/admin/products': typeof AdminProductsRoute
   '/admin/seo': typeof AdminSeoRoute
@@ -309,6 +324,7 @@ export interface FileRoutesByTo {
   '/admin/submissions': typeof AdminSubmissionsRoute
   '/admin/team': typeof AdminTeamRoute
   '/insights/$slug': typeof InsightsSlugRoute
+  '/pages/$slug': typeof PagesSlugRoute
   '/portfolio/$slug': typeof PortfolioSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/shop/$slug': typeof ShopSlugRoute
@@ -342,6 +358,7 @@ export interface FileRoutesById {
   '/admin/chats': typeof AdminChatsRoute
   '/admin/media': typeof AdminMediaRoute
   '/admin/orders': typeof AdminOrdersRoute
+  '/admin/pages': typeof AdminPagesRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
   '/admin/products': typeof AdminProductsRoute
   '/admin/seo': typeof AdminSeoRoute
@@ -350,6 +367,7 @@ export interface FileRoutesById {
   '/admin/submissions': typeof AdminSubmissionsRoute
   '/admin/team': typeof AdminTeamRoute
   '/insights/$slug': typeof InsightsSlugRoute
+  '/pages/$slug': typeof PagesSlugRoute
   '/portfolio/$slug': typeof PortfolioSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/shop/$slug': typeof ShopSlugRoute
@@ -384,6 +402,7 @@ export interface FileRouteTypes {
     | '/admin/chats'
     | '/admin/media'
     | '/admin/orders'
+    | '/admin/pages'
     | '/admin/portfolio'
     | '/admin/products'
     | '/admin/seo'
@@ -392,6 +411,7 @@ export interface FileRouteTypes {
     | '/admin/submissions'
     | '/admin/team'
     | '/insights/$slug'
+    | '/pages/$slug'
     | '/portfolio/$slug'
     | '/services/$slug'
     | '/shop/$slug'
@@ -424,6 +444,7 @@ export interface FileRouteTypes {
     | '/admin/chats'
     | '/admin/media'
     | '/admin/orders'
+    | '/admin/pages'
     | '/admin/portfolio'
     | '/admin/products'
     | '/admin/seo'
@@ -432,6 +453,7 @@ export interface FileRouteTypes {
     | '/admin/submissions'
     | '/admin/team'
     | '/insights/$slug'
+    | '/pages/$slug'
     | '/portfolio/$slug'
     | '/services/$slug'
     | '/shop/$slug'
@@ -464,6 +486,7 @@ export interface FileRouteTypes {
     | '/admin/chats'
     | '/admin/media'
     | '/admin/orders'
+    | '/admin/pages'
     | '/admin/portfolio'
     | '/admin/products'
     | '/admin/seo'
@@ -472,6 +495,7 @@ export interface FileRouteTypes {
     | '/admin/submissions'
     | '/admin/team'
     | '/insights/$slug'
+    | '/pages/$slug'
     | '/portfolio/$slug'
     | '/services/$slug'
     | '/shop/$slug'
@@ -505,6 +529,7 @@ export interface RootRouteChildren {
   AdminChatsRoute: typeof AdminChatsRoute
   AdminMediaRoute: typeof AdminMediaRoute
   AdminOrdersRoute: typeof AdminOrdersRoute
+  AdminPagesRoute: typeof AdminPagesRoute
   AdminPortfolioRoute: typeof AdminPortfolioRoute
   AdminProductsRoute: typeof AdminProductsRoute
   AdminSeoRoute: typeof AdminSeoRoute
@@ -513,6 +538,7 @@ export interface RootRouteChildren {
   AdminSubmissionsRoute: typeof AdminSubmissionsRoute
   AdminTeamRoute: typeof AdminTeamRoute
   InsightsSlugRoute: typeof InsightsSlugRoute
+  PagesSlugRoute: typeof PagesSlugRoute
   PortfolioSlugRoute: typeof PortfolioSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   ShopSlugRoute: typeof ShopSlugRoute
@@ -680,6 +706,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminOrdersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/pages': {
+      id: '/admin/pages'
+      path: '/admin/pages'
+      fullPath: '/admin/pages'
+      preLoaderRoute: typeof AdminPagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/portfolio': {
       id: '/admin/portfolio'
       path: '/admin/portfolio'
@@ -741,6 +774,13 @@ declare module '@tanstack/react-router' {
       path: '/insights/$slug'
       fullPath: '/insights/$slug'
       preLoaderRoute: typeof InsightsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pages/$slug': {
+      id: '/pages/$slug'
+      path: '/pages/$slug'
+      fullPath: '/pages/$slug'
+      preLoaderRoute: typeof PagesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/portfolio/': {
@@ -817,6 +857,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminChatsRoute: AdminChatsRoute,
   AdminMediaRoute: AdminMediaRoute,
   AdminOrdersRoute: AdminOrdersRoute,
+  AdminPagesRoute: AdminPagesRoute,
   AdminPortfolioRoute: AdminPortfolioRoute,
   AdminProductsRoute: AdminProductsRoute,
   AdminSeoRoute: AdminSeoRoute,
@@ -825,6 +866,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminSubmissionsRoute: AdminSubmissionsRoute,
   AdminTeamRoute: AdminTeamRoute,
   InsightsSlugRoute: InsightsSlugRoute,
+  PagesSlugRoute: PagesSlugRoute,
   PortfolioSlugRoute: PortfolioSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   ShopSlugRoute: ShopSlugRoute,

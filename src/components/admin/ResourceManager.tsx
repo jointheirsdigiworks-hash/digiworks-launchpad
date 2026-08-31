@@ -19,6 +19,7 @@ export type FieldDef = {
 };
 
 export type ResourceTable =
+  | "pages"
   | "services"
   | "case_studies"
   | "blog_posts"

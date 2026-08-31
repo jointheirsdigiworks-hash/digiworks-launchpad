@@ -6,6 +6,7 @@
 export type AdminRole = "admin" | "editor" | "viewer";
 
 export type AdminResource =
+  | "pages"
   | "services"
   | "case_studies"
   | "blog_posts"
@@ -37,6 +38,7 @@ export const ROLE_DESCRIPTION: Record<AdminRole, string> = {
 };
 
 const CONTENT: AdminResource[] = [
+  "pages",
   "services",
   "case_studies",
   "blog_posts",
@@ -73,6 +75,7 @@ export function canWrite(role: AdminRole, resource: AdminResource): boolean {
 
 /** Nav sections, each gated by the resource it manages. */
 export const ADMIN_SECTIONS: { to: string; label: string; resource: AdminResource }[] = [
+  { to: "/admin/pages", label: "Pages", resource: "pages" },
   { to: "/admin/services", label: "Services", resource: "services" },
   { to: "/admin/portfolio", label: "Portfolio", resource: "case_studies" },
   { to: "/admin/blog", label: "Blog", resource: "blog_posts" },

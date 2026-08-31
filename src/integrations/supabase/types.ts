@@ -553,6 +553,69 @@ export type Database = {
           },
         ]
       }
+      pages: {
+        Row: {
+          blocks: Json
+          created_at: string
+          headline: string | null
+          id: string
+          intro: string | null
+          meta_description: string
+          meta_title: string
+          nav_label: string | null
+          og_image_url: string | null
+          preview_token: string
+          publish_at: string | null
+          show_in_footer: boolean
+          show_in_nav: boolean
+          slug: string
+          sort_order: number
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          blocks?: Json
+          created_at?: string
+          headline?: string | null
+          id?: string
+          intro?: string | null
+          meta_description?: string
+          meta_title?: string
+          nav_label?: string | null
+          og_image_url?: string | null
+          preview_token?: string
+          publish_at?: string | null
+          show_in_footer?: boolean
+          show_in_nav?: boolean
+          slug: string
+          sort_order?: number
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          blocks?: Json
+          created_at?: string
+          headline?: string | null
+          id?: string
+          intro?: string | null
+          meta_description?: string
+          meta_title?: string
+          nav_label?: string | null
+          og_image_url?: string | null
+          preview_token?: string
+          publish_at?: string | null
+          show_in_footer?: boolean
+          show_in_nav?: boolean
+          slug?: string
+          sort_order?: number
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       products: {
         Row: {
           category: string
