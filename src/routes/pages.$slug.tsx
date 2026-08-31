@@ -115,6 +115,7 @@ function Block({ block }: { block: PageBlock }) {
 
 function CmsPage() {
   const { page, preview } = Route.useLoaderData();
+  if (!page) return null;
   const blocks = Array.isArray(page.blocks) ? page.blocks : [];
 
   return (
