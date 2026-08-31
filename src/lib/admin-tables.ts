@@ -1,5 +1,6 @@
 /** Tables the generic admin CRUD layer may touch, plus their default ordering. */
 export const ADMIN_TABLES = [
+  "pages",
   "services",
   "case_studies",
   "blog_posts",
@@ -19,6 +20,7 @@ export const ADMIN_TABLES = [
 export type AdminTable = (typeof ADMIN_TABLES)[number];
 
 export const ADMIN_ORDER: Record<AdminTable, { column: string; ascending: boolean }> = {
+  pages: { column: "sort_order", ascending: true },
   services: { column: "sort_order", ascending: true },
   case_studies: { column: "sort_order", ascending: true },
   blog_posts: { column: "created_at", ascending: false },
